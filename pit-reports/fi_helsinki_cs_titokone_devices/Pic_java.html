@@ -1,0 +1,1809 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>Pic.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_5'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_6'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone.devices;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_8'></a>
+</td>
+<td class=''><pre><span  class=''>import fi.helsinki.cs.titokone.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_9'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_10'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_11'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_12'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_13'></a>
+</td>
+<td class=''><pre><span  class=''> * a simple programmable interrupt controller with 32 lines</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_14'></a>
+</td>
+<td class=''><pre><span  class=''> * ports:</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_15'></a>
+</td>
+<td class=''><pre><span  class=''> * 0-command port/state port</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_16'></a>
+</td>
+<td class=''><pre><span  class=''> * read to get the state of which interrupts are high</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_17'></a>
+</td>
+<td class=''><pre><span  class=''> * write to send commands</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_18'></a>
+</td>
+<td class=''><pre><span  class=''> * -0 -&#62; clear all interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_19'></a>
+</td>
+<td class=''><pre><span  class=''> * -1 -&#62; inhibit all interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_20'></a>
+</td>
+<td class=''><pre><span  class=''> * -2 -&#62; re-enable interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_21'></a>
+</td>
+<td class=''><pre><span  class=''> * 1-interrupt enable port</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_22'></a>
+</td>
+<td class=''><pre><span  class=''> * read- to see which interrupts are enabled</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_23'></a>
+</td>
+<td class=''><pre><span  class=''> * write to enable/disable interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_24'></a>
+</td>
+<td class=''><pre><span  class=''> * to clear a specific interrupt , disable and re-enable it</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_25'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_26'></a>
+</td>
+<td class='covered'><pre><span  class=''>public class Pic</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_27'></a>
+</td>
+<td class=''><pre><span  class=''>        implements IODevice,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_28'></a>
+</td>
+<td class=''><pre><span  class=''>        Interruptable,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_29'></a>
+</td>
+<td class=''><pre><span  class=''>        InterruptGenerator {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_30'></a>
+</td>
+<td class=''><pre><span  class=''>    protected Interruptable processor;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_31'/>
+31
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_31'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    protected int enabled = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_32'/>
+32
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_32'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    protected int flagged = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_33'/>
+33
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_33'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    protected int seen = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_34'/>
+34
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_34'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    protected boolean disabled = false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_35'/>
+35
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_35'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>    protected ArrayList&#60;InterruptGenerator&#62; generators =</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_36'></a>
+</td>
+<td class=''><pre><span  class=''>            new ArrayList&#60;InterruptGenerator&#62;();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_37'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_38'></a>
+</td>
+<td class=''><pre><span  class=''>    public int getPortCount() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_39'/>
+39
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_39'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        return 2;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_40'/>
+40
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_40'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_41'/>
+41
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_41'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_42'></a>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_43'></a>
+</td>
+<td class=''><pre><span  class=''>    public int getPort(int n) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_44'/>
+44
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_44'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        if (n == 0) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_45'/>
+45
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_45'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return flagged; //show what interrupts are high</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_46'/>
+46
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_46'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        } else if (n == 1) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_47'/>
+47
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_47'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return enabled; //show enabled interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_48'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_49'/>
+49
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_49'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        throw new RuntimeException(&#34;should not be possible &#34; + n);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_50'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_51'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_52'></a>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_53'></a>
+</td>
+<td class=''><pre><span  class=''>    public void setPort(int n, int value) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_54'/>
+54
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_54'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        if (n == 0) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_55'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            switch (value) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_56'></a>
+</td>
+<td class=''><pre><span  class=''>                case 0:</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_57'/>
+57
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_57'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    flagged = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_58'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                    return; //clear</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_59'></a>
+</td>
+<td class=''><pre><span  class=''>                case 1:</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_60'/>
+60
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_60'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    disabled = true;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_61'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                    return; //disable</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_62'></a>
+</td>
+<td class=''><pre><span  class=''>                case 2:</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_63'/>
+63
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_63'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    disabled = false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_64'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                    return; //re-enable</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_65'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_66'/>
+66
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_66'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        } else if (n == 1) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_67'/>
+67
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_67'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            flagged = flagged &#38; value;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_68'/>
+68
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_68'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            enabled = value; //set enabled interrupts</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_69'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            return;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_70'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_71'/>
+71
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_71'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        throw new RuntimeException(&#34;should not be possible &#34; + n);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_72'/>
+72
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_72'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_73'/>
+73
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_73'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_74'></a>
+</td>
+<td class=''><pre><span  class=''>    public void reset() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_75'/>
+75
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_75'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        enabled = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_76'/>
+76
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_76'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        flagged = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_77'/>
+77
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_77'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        seen = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_78'/>
+78
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_78'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        disabled = false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_79'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_80'/>
+80
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_80'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_81'></a>
+</td>
+<td class=''><pre><span  class=''>    public void update() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_82'/>
+82
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_82'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        if (!disabled) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_83'/>
+83
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_83'>7</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (((~seen) &#38; flagged &#38; enabled) &#62; 0) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_84'/>
+84
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_84'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                processor.flagInterrupt(this);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_85'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_86'/>
+86
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_86'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            seen = (flagged &#38; enabled);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_87'/>
+87
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_87'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_88'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_89'/>
+89
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_89'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_90'></a>
+</td>
+<td class=''><pre><span  class=''>    public void link(Interruptable il) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_91'/>
+91
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_91'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (processor == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_92'/>
+92
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_92'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            processor = il;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_93'/>
+93
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_93'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_94'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_95'/>
+95
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_95'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_96'/>
+96
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_96'></a>
+</td>
+<td class=''><pre><span  class=''>    public void flagInterrupt(InterruptGenerator ig) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_97'/>
+97
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_97'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        int i = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_98'/>
+98
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_98'>4</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        for (InterruptGenerator igg : generators) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_99'/>
+99
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_99'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (ig == igg) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_100'/>
+100
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_100'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                break;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_101'/>
+101
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_101'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_102'/>
+102
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_102'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            i++;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_103'/>
+103
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_103'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_104'/>
+104
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_104'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        flagged |= (1 &#60;&#60; i);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_105'/>
+105
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_105'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_106'/>
+106
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_106'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_107'/>
+107
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_107'></a>
+</td>
+<td class=''><pre><span  class=''>    public void add(InterruptGenerator ig) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_108'/>
+108
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_108'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        generators.add(ig);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_109'/>
+109
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_109'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@4dd7f809_110'/>
+110
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_110'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_31'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable enabled : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_32'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable flagged : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_33'/> 
+
+<p class='SURVIVED'>Removed assignment to member variable seen : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_34'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable disabled : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_35'/> 
+
+<p class='KILLED'>removed call to java/util/ArrayList::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ControlTest.testGetApplicationDefinitions(fi.helsinki.cs.titokone.ControlTest)</p> <p class='KILLED'>Removed assignment to member variable generators : KILLED -> fi.helsinki.cs.titokone.ControlTest.testGetApplicationDefinitions(fi.helsinki.cs.titokone.ControlTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_39'/> 
+
+<p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>replaced return of integer sized value with (x == 0 ? 1 : 0) : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_44'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_45'/> 
+
+<p class='NO_COVERAGE'>replaced return of integer sized value with (x == 0 ? 1 : 0) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_46'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_47'/> 
+
+<p class='NO_COVERAGE'>replaced return of integer sized value with (x == 0 ? 1 : 0) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_49'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/RuntimeException::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_54'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_57'/> 
+
+<p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable flagged : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_60'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable disabled : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_63'/> 
+
+<p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable disabled : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_66'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_67'/> 
+
+<p class='NO_COVERAGE'>Replaced bitwise AND with OR : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable flagged : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_68'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable enabled : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_71'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/RuntimeException::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_75'/> 
+
+<p class='SURVIVED'>Removed assignment to member variable enabled : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_76'/> 
+
+<p class='SURVIVED'>Removed assignment to member variable flagged : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_77'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable seen : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_78'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable disabled : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_82'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_83'/> 
+
+<p class='NO_COVERAGE'>Substituted -1 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>changed conditional boundary : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted -1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced XOR with AND : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced bitwise AND with OR : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced bitwise AND with OR : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_84'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Interruptable::flagInterrupt : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_86'/> 
+
+<p class='NO_COVERAGE'>Replaced bitwise AND with OR : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable seen : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_91'>91</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_91'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_92'/> 
+
+<p class='SURVIVED'>Removed assignment to member variable processor : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_97'>97</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_97'/> 
+
+<p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_98'/> 
+
+<p class='NO_COVERAGE'>removed call to java/util/ArrayList::iterator : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/util/Iterator::next : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/util/Iterator::hasNext : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_99'>99</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_99'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_102'/> 
+
+<p class='NO_COVERAGE'>Changed increment from 1 to -1 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_104'>104</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_104'/> 
+
+<p class='NO_COVERAGE'>Replaced Shift Left with Shift Right : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced bitwise OR with AND : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable flagged : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@4dd7f809_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@4dd7f809_108'/> 
+
+<p class='SURVIVED'>removed call to java/util/ArrayList::add : SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.helsinki.cs.titokone.ControlTest.testChangeMemorySize(fi.helsinki.cs.titokone.ControlTest) (50 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetApplicationDefinitions(fi.helsinki.cs.titokone.ControlTest) (28 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testOpenSource(fi.helsinki.cs.titokone.ControlTest) (30 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testLoad(fi.helsinki.cs.titokone.ControlTest) (141 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSetDefaultStdin(fi.helsinki.cs.titokone.ControlTest) (40 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testConstructorAndChangeMemorySize(fi.helsinki.cs.titokone.ControlTest) (324 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryGuessFilename(fi.helsinki.cs.titokone.ControlTest) (38 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetBinary(fi.helsinki.cs.titokone.ControlTest) (36 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryFileName(fi.helsinki.cs.titokone.ControlTest) (55 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testCompile(fi.helsinki.cs.titokone.ControlTest) (41 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>

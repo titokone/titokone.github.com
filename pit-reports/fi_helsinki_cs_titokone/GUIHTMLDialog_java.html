@@ -1,0 +1,1365 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>GUIHTMLDialog.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_5'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_6'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_8'></a>
+</td>
+<td class=''><pre><span  class=''>import javax.swing.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_9'></a>
+</td>
+<td class=''><pre><span  class=''>import javax.swing.event.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_10'></a>
+</td>
+<td class=''><pre><span  class=''>import javax.swing.text.html.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_11'></a>
+</td>
+<td class=''><pre><span  class=''>import java.awt.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_12'></a>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_13'></a>
+</td>
+<td class=''><pre><span  class=''>import java.net.URL;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_14'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_15'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_16'></a>
+</td>
+<td class=''><pre><span  class=''>public class GUIHTMLDialog extends JDialog {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_17'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_18'></a>
+</td>
+<td class=''><pre><span  class=''>    JEditorPane contents;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_19'></a>
+</td>
+<td class=''><pre><span  class=''>    JScrollPane contentsScrollPane;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_20'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_21'></a>
+</td>
+<td class=''><pre><span  class=''>    String pathToURL;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_22'></a>
+</td>
+<td class=''><pre><span  class=''>    URL htmlURL;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_23'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_24'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_25'></a>
+</td>
+<td class=''><pre><span  class=''>    public GUIHTMLDialog(Frame ownerFrame, boolean modal, String path) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_26'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>        super(ownerFrame, modal);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_27'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_28'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_29'/>
+29
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_29'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        pathToURL = path;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_30'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_31'/>
+31
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_31'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        contents = new JEditorPane();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_32'/>
+32
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_32'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        contents.setEditable(false);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_33'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_34'/>
+34
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_34'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        contents.addHyperlinkListener(new HyperlinkListener() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_35'></a>
+</td>
+<td class=''><pre><span  class=''>            public void hyperlinkUpdate(HyperlinkEvent e) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_36'/>
+36
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_36'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_37'/>
+37
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_37'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    JEditorPane pane = (JEditorPane) e.getSource();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_38'/>
+38
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_38'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    if (e instanceof HTMLFrameHyperlinkEvent) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_39'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                        HTMLFrameHyperlinkEvent evt = (HTMLFrameHyperlinkEvent) e;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_40'/>
+40
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_40'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                        HTMLDocument doc = (HTMLDocument) pane.getDocument();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_41'/>
+41
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_41'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                        doc.processHTMLFrameHyperlinkEvent(evt);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_42'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                    } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_43'></a>
+</td>
+<td class=''><pre><span  class=''>                        try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_44'/>
+44
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_44'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                            pane.setPage(e.getURL());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_45'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                        } catch (Throwable t) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_46'/>
+46
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_46'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                            t.printStackTrace();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_47'/>
+47
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_47'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_48'></a>
+</td>
+<td class=''><pre><span  class=''>                    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_49'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_50'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_51'></a>
+</td>
+<td class=''><pre><span  class=''>        });</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_52'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_53'/>
+53
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_53'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        contentsScrollPane = new JScrollPane(contents);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_54'/>
+54
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_54'>6</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        contentsScrollPane.setPreferredSize(new Dimension(400, 300));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_55'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_56'/>
+56
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_56'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        getContentPane().add(contentsScrollPane);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_57'/>
+57
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_57'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        pack();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_58'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_59'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_60'/>
+60
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_60'></a>
+</td>
+<td class=''><pre><span  class=''>    public void updateAllTexts() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_61'/>
+61
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_61'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        String newPath = new Message(pathToURL).toString();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_62'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_63'></a>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_64'/>
+64
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_64'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            htmlURL = new URL(newPath);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_65'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (Exception e) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_66'></a>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_67'/>
+67
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_67'>11</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                htmlURL = new URL(getClass().getClassLoader().getResource(&#34;doc&#34;).toString() + &#34;/&#34; + newPath);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_68'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            } catch (Exception e2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_69'></a>
+</td>
+<td class=''><pre><span  class=''>                //System.out.println(e);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_70'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_71'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_72'/>
+72
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_72'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_73'/>
+73
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_73'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        if (htmlURL != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_74'></a>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_75'/>
+75
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_75'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                contents.setPage(htmlURL);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_76'/>
+76
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_76'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            } catch (IOException e) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_77'/>
+77
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_77'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                System.err.println(&#34;Attempted to read a bad URL: &#34; + htmlURL);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_78'/>
+78
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_78'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_79'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_80'/>
+80
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_80'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            System.err.println(&#34;Requested URL was not found.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_81'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_82'/>
+82
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_82'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_83'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_84'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7923a615_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7923a615_85'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_29'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable pathToURL : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_31'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable contents : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_32'/> 
+
+<p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::setEditable : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_34'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable this$0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::addHyperlinkListener : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIHTMLDialog$1::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_36'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/event/HyperlinkEvent::getEventType : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_37'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/event/HyperlinkEvent::getSource : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_38'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_40'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::getDocument : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_41'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/text/html/HTMLDocument::processHTMLFrameHyperlinkEvent : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_44'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/event/HyperlinkEvent::getURL : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::setPage : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_46'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/Throwable::printStackTrace : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_53'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JScrollPane::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable contentsScrollPane : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_54'/> 
+
+<p class='NO_COVERAGE'>removed call to java/awt/Dimension::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 400 with 401 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced constant value of 300 with 301 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 300 with 301 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JScrollPane::setPreferredSize : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced constant value of 400 with 401 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_56'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIHTMLDialog::getContentPane : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/awt/Container::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_57'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIHTMLDialog::pack : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_61'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_64'/> 
+
+<p class='NO_COVERAGE'>removed call to java/net/URL::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable htmlURL : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_67'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/Class::getClassLoader : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/net/URL::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/ClassLoader::getResource : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/net/URL::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/Object::getClass : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable htmlURL : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_73'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_75'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JEditorPane::setPage : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_77'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/io/PrintStream::println : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7923a615_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7923a615_80'/> 
+
+<p class='NO_COVERAGE'>removed call to java/io/PrintStream::println : NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>

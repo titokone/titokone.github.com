@@ -1,0 +1,1647 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>GUIRunSettingsDialog.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_5'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_6'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_8'></a>
+</td>
+<td class=''><pre><span  class=''>import javax.swing.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.awt.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_10'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_11'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_12'></a>
+</td>
+<td class=''><pre><span  class=''>public class GUIRunSettingsDialog extends GUISettingsDialog {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_13'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_14'></a>
+</td>
+<td class=''><pre><span  class=''>    public JCheckBox lineByLineCheckBox;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_15'></a>
+</td>
+<td class=''><pre><span  class=''>    public JCheckBox showCommentsCheckBox;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_16'></a>
+</td>
+<td class=''><pre><span  class=''>    public JCheckBox showAnimationCheckBox;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_17'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_18'></a>
+</td>
+<td class=''><pre><span  class=''>    GUI ownerGUI;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_19'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_20'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    public static String APPLY = &#34;GUIRunSettingsDialog_Apply&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_21'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_22'></a>
+</td>
+<td class=''><pre><span  class=''>    public GUIRunSettingsDialog(Frame ownerFrame, boolean modal) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_23'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_24'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>        super(ownerFrame, modal);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_25'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_26'/>
+26
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_26'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        ownerGUI = (GUI) ownerFrame;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_27'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_28'/>
+28
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_28'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        setTitle(&#34;Set running options&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_29'/>
+29
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_29'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        setSize(250, 180);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_30'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_31'/>
+31
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_31'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        applyButton = new JButton(&#34;Apply&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_32'/>
+32
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_32'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        closeButton = new JButton(&#34;Close&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_33'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_34'/>
+34
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_34'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        applyButton.setActionCommand(APPLY);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_35'/>
+35
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_35'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        applyButton.addActionListener(ownerGUI);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_36'/>
+36
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_36'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        applyButton.addActionListener(applyButtonActionListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_37'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_38'/>
+38
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_38'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        closeButton.addActionListener(closeButtonActionListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_39'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_40'/>
+40
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_40'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        this.addComponentListener(settingsDialogListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_41'/>
+41
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_41'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_42'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_43'/>
+43
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_43'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        lineByLineCheckBox = new JCheckBox(&#34;Execute line by line&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_44'/>
+44
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_44'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        lineByLineCheckBox.addChangeListener(stateChangeListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_45'/>
+45
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_45'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showCommentsCheckBox = new JCheckBox(&#34;Show comments&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_46'/>
+46
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_46'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showCommentsCheckBox.addChangeListener(stateChangeListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_47'/>
+47
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_47'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showAnimationCheckBox = new JCheckBox(&#34;Show animation&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_48'/>
+48
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_48'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showAnimationCheckBox.addChangeListener(stateChangeListener);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_49'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_50'/>
+50
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_50'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        getContentPane().setLayout(new BorderLayout());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_51'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_52'/>
+52
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_52'>6</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        JPanel checkBoxPanel = new JPanel(new GridLayout(3, 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_53'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_54'/>
+54
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_54'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        checkBoxPanel.add(lineByLineCheckBox);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_55'/>
+55
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_55'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        checkBoxPanel.add(showCommentsCheckBox);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_56'/>
+56
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_56'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        checkBoxPanel.add(showAnimationCheckBox);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_57'/>
+57
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_57'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_58'/>
+58
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_58'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        JPanel buttonPanel = new JPanel(new FlowLayout());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_59'/>
+59
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_59'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        buttonPanel.add(applyButton);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_60'/>
+60
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_60'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        buttonPanel.add(closeButton);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_61'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_62'/>
+62
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_62'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        getContentPane().add(checkBoxPanel, BorderLayout.CENTER);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_63'/>
+63
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_63'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        getContentPane().add(buttonPanel, BorderLayout.SOUTH);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_64'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_65'/>
+65
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_65'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        pack();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_66'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_67'/>
+67
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_67'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        setDefaultCloseOperation(DISPOSE_ON_CLOSE);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_68'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_69'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_70'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_71'></a>
+</td>
+<td class=''><pre><span  class=''>    protected void checkCorrespondance(JCheckBox changee) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_72'/>
+72
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_72'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        if (changee.isSelected()) {// Something was selected: animator -&#62; line-by-line?</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_73'/>
+73
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_73'>4</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (showAnimationCheckBox.isSelected() &#38;&#38; !lineByLineCheckBox.isSelected()) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_74'/>
+74
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_74'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                lineByLineCheckBox.setSelected(true);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_75'/>
+75
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_75'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_76'/>
+76
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_76'></a>
+</td>
+<td class=''><pre><span  class=''>        } else // Something was unselected: !line-by-line -&#62; !animator?</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_77'/>
+77
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_77'>4</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (showAnimationCheckBox.isSelected() &#38;&#38; !lineByLineCheckBox.isSelected()) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_78'/>
+78
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_78'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                showAnimationCheckBox.setSelected(false);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_79'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_80'/>
+80
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_80'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_81'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_82'/>
+82
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_82'></a>
+</td>
+<td class=''><pre><span  class=''>    public void updateAllTexts() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_83'/>
+83
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_83'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        setTitle(new Message(&#34;Set running options&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_84'/>
+84
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_84'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        lineByLineCheckBox.setText(new Message(&#34;Execute code line by line&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_85'/>
+85
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_85'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showCommentsCheckBox.setText(new Message(&#34;Show extra comments while executing&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_86'/>
+86
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_86'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        showAnimationCheckBox.setText(new Message(&#34;Show animation while executing&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_87'/>
+87
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_87'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        applyButton.setText(new Message(&#34;Apply&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_88'/>
+88
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_88'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        closeButton.setText(new Message(&#34;Close&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_89'/>
+89
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_89'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        pack();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_90'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_91'/>
+91
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_91'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@641c51f0_92'/>
+92
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@641c51f0_92'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_26'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable ownerGUI : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_28'>28</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_28'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::setTitle : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_29'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::setSize : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced constant value of 180 with 181 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 180 with 181 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 250 with 251 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Replaced constant value of 250 with 251 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_31'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable applyButton : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JButton::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_32'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JButton::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable closeButton : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_34'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JButton::setActionCommand : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_35'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JButton::addActionListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_36'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JButton::addActionListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_38'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JButton::addActionListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_40'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::addComponentListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_43'/> 
+
+<p class='NO_COVERAGE'>Removed assignment to member variable lineByLineCheckBox : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_44'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::addChangeListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_45'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable showCommentsCheckBox : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_46'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::addChangeListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_47'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Removed assignment to member variable showAnimationCheckBox : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_48'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::addChangeListener : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_50'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::getContentPane : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/awt/Container::setLayout : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/awt/BorderLayout::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_52'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/awt/GridLayout::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JPanel::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 3 with 4 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 3 with 4 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_54'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JPanel::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_55'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JPanel::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_56'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JPanel::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_58'/> 
+
+<p class='NO_COVERAGE'>removed call to java/awt/FlowLayout::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JPanel::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_59'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JPanel::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_60'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JPanel::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_62'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::getContentPane : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/awt/Container::add : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_63'/> 
+
+<p class='NO_COVERAGE'>removed call to java/awt/Container::add : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::getContentPane : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_65'>65</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_65'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::pack : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_67'/> 
+
+<p class='NO_COVERAGE'>Substituted 2 with 3 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 2 with 3 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::setDefaultCloseOperation : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_72'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::isSelected : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_73'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::isSelected : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::isSelected : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_74'>74</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_74'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::setSelected : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_77'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::isSelected : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::isSelected : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_78'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::setSelected : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_83'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::setTitle : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_84'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::setText : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_85'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::setText : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_86'/> 
+
+<p class='NO_COVERAGE'>removed call to javax/swing/JCheckBox::setText : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_87'>87</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_87'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JButton::setText : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_88'>88</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_88'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to javax/swing/JButton::setText : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@641c51f0_89'>89</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@641c51f0_89'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/GUIRunSettingsDialog::pack : NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>

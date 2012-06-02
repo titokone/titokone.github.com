@@ -1,0 +1,4929 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>BinaryInterpreter.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_5'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_6'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_8'></a>
+</td>
+<td class=''><pre><span  class=''>import fi.helsinki.cs.titokone.devices.DeviceNames;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.HashMap;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_10'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_11'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_12'></a>
+</td>
+<td class=''><pre><span  class=''> * This class contains the information to translate a command in</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_13'></a>
+</td>
+<td class=''><pre><span  class=''> * binary form to its symbolic string form. Naturally, if a command</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_14'></a>
+</td>
+<td class=''><pre><span  class=''> * has been transformed from its symbolic form to binary, the transformation</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_15'></a>
+</td>
+<td class=''><pre><span  class=''> * back will not restore used symbols as we cannot tell, even with the help</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_16'></a>
+</td>
+<td class=''><pre><span  class=''> * of the symbol table, what symbol has been used where.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_17'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_18'></a>
+</td>
+<td class=''><pre><span  class=''>public class BinaryInterpreter extends Interpreter {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_19'></a>
+</td>
+<td class=''><pre><span  class=''>    public static final String GARBLE = &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_20'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_21'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_22'></a>
+</td>
+<td class=''><pre><span  class=''>     * This hashmap contains the symbolic commands as strings, with</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_23'></a>
+</td>
+<td class=''><pre><span  class=''>     * Integer forms of their opcodes as keys.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_24'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_25'></a>
+</td>
+<td class=''><pre><span  class=''>    private HashMap&#60;Object, Object&#62; commands;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_26'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_27'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_28'></a>
+</td>
+<td class=''><pre><span  class=''>     * This hashmap contains parameters for each command with Integer forms</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_29'></a>
+</td>
+<td class=''><pre><span  class=''>     * of their opcodes as keys.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_30'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_31'></a>
+</td>
+<td class=''><pre><span  class=''>    private HashMap&#60;Object, Object&#62; parameters;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_32'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_33'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_34'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_35'></a>
+</td>
+<td class=''><pre><span  class=''>     * This constructor sets up a binaryinterpreter and initializes the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_36'></a>
+</td>
+<td class=''><pre><span  class=''>     * internal command information data structures.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_37'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_38'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_39'></a>
+</td>
+<td class='covered'><pre><span  class=''>    public BinaryInterpreter() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_40'/>
+40
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_40'>4</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        commands = new HashMap&#60;Object, Object&#62;(38); // 38 was 37, increased to 38 (added NOT-command) - Lauri 2004-12-09</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_41'/>
+41
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_41'>4</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        parameters = new HashMap&#60;Object, Object&#62;(38);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_42'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_43'/>
+43
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_43'>7</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (int i = 0; i &#60; 38; i++) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_44'/>
+44
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_44'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            commands.put(commandData[i][1], commandData[i][0]);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_45'/>
+45
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_45'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            parameters.put(commandData[i][1], commandData[i][2]);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_46'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_47'/>
+47
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_47'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_48'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_49'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_50'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_51'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_52'></a>
+</td>
+<td class=''><pre><span  class=''>     * This function transforms a binary-form command to its symbolic</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_53'></a>
+</td>
+<td class=''><pre><span  class=''>     * representation. Binary is interpreted in two parts, firstly the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_54'/>
+54
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_54'></a>
+</td>
+<td class=''><pre><span  class=''>     * first 8 bits of the binary representation are extracted and if</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_55'></a>
+</td>
+<td class=''><pre><span  class=''>     * it is a valid opcode then check the needed bits if they make</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_56'></a>
+</td>
+<td class=''><pre><span  class=''>     * any sense. Like if the opcode is a NOP then all the bits can be 0,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_57'/>
+57
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_57'></a>
+</td>
+<td class=''><pre><span  class=''>     * or anything else. Also check what to return. Like in a case of NOP</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_58'></a>
+</td>
+<td class=''><pre><span  class=''>     * there is no need to return other parameters.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_59'></a>
+</td>
+<td class=''><pre><span  class=''>     * http://www.cs.helsinki.fi/u/ahakkine/Tito/koksi.kaskyt Check</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_60'/>
+60
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_60'></a>
+</td>
+<td class=''><pre><span  class=''>     * Compiler.java for more info on checking a binary.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_61'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_62'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_63'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The symbolic representation if it is valid enough.  If</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_64'></a>
+</td>
+<td class=''><pre><span  class=''>     *         the opcode is unknown, the memory address mode faulty or the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_65'></a>
+</td>
+<td class=''><pre><span  class=''>     *         register ids do not point to real registers,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_66'></a>
+</td>
+<td class=''><pre><span  class=''>     *         BinaryInterpreter.GARBLE is returned.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_67'/>
+67
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_67'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_68'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_69'></a>
+</td>
+<td class=''><pre><span  class=''>    public String binaryToString(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_70'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_71'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_72'/>
+72
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_72'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String s = getOpCodeFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_73'/>
+73
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_73'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (s == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_74'/>
+74
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_74'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_75'/>
+75
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_75'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_76'/>
+76
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_76'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        Integer opcode = new Integer(s);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_77'/>
+77
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_77'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        s = (String) commands.get(opcode);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_78'/>
+78
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_78'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (s == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_79'/>
+79
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_79'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_80'/>
+80
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_80'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_81'/>
+81
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_81'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (getMemoryModeFromBinary(command) == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_82'/>
+82
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_82'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_83'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_84'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_85'/>
+85
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_85'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        Integer param = (Integer) parameters.get(opcode);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_86'/>
+86
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_86'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_87'/>
+87
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_87'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        switch (param.intValue()) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_88'></a>
+</td>
+<td class=''><pre><span  class=''>            case 0: { // No parameters</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_89'/>
+89
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_89'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_90'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_91'/>
+91
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_91'></a>
+</td>
+<td class=''><pre><span  class=''>            case 1: { // not used</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_92'/>
+92
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_92'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_93'/>
+93
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_93'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_94'></a>
+</td>
+<td class=''><pre><span  class=''>            case 2: { //SP and register</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_95'/>
+95
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_95'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_96'/>
+96
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_96'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;, &#34; + getSecondRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_97'/>
+97
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_97'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_98'/>
+98
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_98'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_99'/>
+99
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_99'></a>
+</td>
+<td class=''><pre><span  class=''>            case 3: { //only SP</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_100'/>
+100
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_100'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s += &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_101'/>
+101
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_101'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_102'/>
+102
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_102'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_103'/>
+103
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_103'></a>
+</td>
+<td class=''><pre><span  class=''>            case 4: { //address only</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_104'/>
+104
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_104'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                String mem = getMemoryModeFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_105'/>
+105
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_105'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_106'/>
+106
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_106'>2</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                if (mem.equals(null)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_107'/>
+107
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_107'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_108'/>
+108
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_108'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_109'/>
+109
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_109'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                s += &#34; &#34; + mem;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_110'/>
+110
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_110'>5</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                s += getAddressFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_111'/>
+111
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_111'>6</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                s = s + &#34;(&#34; + getSecondRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_112'/>
+112
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_112'>4</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                s = s + &#34;)&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_113'/>
+113
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_113'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_114'/>
+114
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_114'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_115'/>
+115
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_115'></a>
+</td>
+<td class=''><pre><span  class=''>            case 5: { //Full parameters</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_116'/>
+116
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_116'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_117'/>
+117
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_117'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;, &#34; + getMemoryModeFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_118'/>
+118
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_118'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + getAddressFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_119'/>
+119
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_119'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;(&#34; + getSecondRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_120'/>
+120
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_120'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;)&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_121'/>
+121
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_121'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_122'/>
+122
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_122'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_123'/>
+123
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_123'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_124'/>
+124
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_124'></a>
+</td>
+<td class=''><pre><span  class=''>            case 6: {//Full with less fetches</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_125'/>
+125
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_125'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_126'/>
+126
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_126'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                String mem = getMemoryModeFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_127'/>
+127
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_127'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (mem == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_128'/>
+128
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_128'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_129'/>
+129
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_129'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_130'/>
+130
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_130'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_131'/>
+131
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_131'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_132'/>
+132
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_132'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;, &#34; + mem;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_133'/>
+133
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_133'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + getAddressFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_134'/>
+134
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_134'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;(&#34; + getSecondRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_135'/>
+135
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_135'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;)&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_136'/>
+136
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_136'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_137'/>
+137
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_137'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_138'/>
+138
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_138'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_139'/>
+139
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_139'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_140'/>
+140
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_140'></a>
+</td>
+<td class=''><pre><span  class=''>            case 7: {//Register and device</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_141'/>
+141
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_141'></a>
+</td>
+<td class=''><pre><span  class=''>                // FIXME: this should really allow any addressing mode and no restrictions on the constant value</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_142'/>
+142
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_142'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s += &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_143'/>
+143
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_143'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_144'/>
+144
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_144'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                int device = Integer.parseInt(getAddressFromBinary(command));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_145'/>
+145
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_145'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                if(!getMemoryModeFromBinary(command).equals(&#34;=&#34;)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_146'/>
+146
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_146'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_147'/>
+147
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_147'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_148'/>
+148
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_148'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_149'/>
+149
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_149'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                String devName = DeviceNames.lookupByValue(device);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_150'/>
+150
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_150'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                if(devName != null)</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_151'/>
+151
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_151'>7</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                    return s + &#34;, =&#34; + devName.toUpperCase();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_152'/>
+152
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_152'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_153'/>
+153
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_153'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_154'/>
+154
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_154'></a>
+</td>
+<td class=''><pre><span  class=''>            case 8: { //Address with less fetches</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_155'/>
+155
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_155'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                String mem = getMemoryModeFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_156'/>
+156
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_156'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (mem == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_157'/>
+157
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_157'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_158'/>
+158
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_158'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_159'/>
+159
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_159'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_160'/>
+160
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_160'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34; &#34; + mem;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_161'/>
+161
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_161'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + getAddressFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_162'/>
+162
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_162'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;(&#34; + getSecondRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_163'/>
+163
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_163'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s = s + &#34;)&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_164'/>
+164
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_164'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_165'/>
+165
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_165'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_166'/>
+166
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_166'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_167'/>
+167
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_167'></a>
+</td>
+<td class=''><pre><span  class=''>            case 9: {//SVC SP and operation</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_168'/>
+168
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_168'></a>
+</td>
+<td class=''><pre><span  class=''>        // FIXME: this should really allow any addressing mode and no restrictions on the constant value</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_169'/>
+169
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_169'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s += &#34; &#34; + getFirstRegisterFromBinary(command);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_170'/>
+170
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_170'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                s += &#34;, =&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_171'/>
+171
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_171'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        int service = Integer.parseInt(getAddressFromBinary(command));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_172'/>
+172
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_172'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_173'/>
+173
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_173'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String servName = SvcNames.lookupByValue(service);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_174'/>
+174
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_174'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if(servName != null)</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_175'/>
+175
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_175'>6</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return s + servName.toUpperCase();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_176'/>
+176
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_176'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_177'/>
+177
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_177'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return GARBLE;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_178'/>
+178
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_178'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_179'/>
+179
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_179'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_180'/>
+180
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_180'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_181'/>
+181
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_181'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_182'/>
+182
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_182'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_183'/>
+183
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_183'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_184'/>
+184
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_184'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_185'/>
+185
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_185'></a>
+</td>
+<td class=''><pre><span  class=''>    /* Translates the opcode and checks if it is a valid one, then</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_186'/>
+186
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_186'></a>
+</td>
+<td class=''><pre><span  class=''>calls the getParameterString to sort out the rest of the binary.*/</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_187'/>
+187
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_187'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_188'/>
+188
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_188'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_189'/>
+189
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_189'></a>
+</td>
+<td class=''><pre><span  class=''>     * This command returns the operation code from a binary</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_190'/>
+190
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_190'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_191'/>
+191
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_191'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_192'/>
+192
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_192'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Operation code in a String format.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_193'/>
+193
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_193'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_194'/>
+194
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_194'></a>
+</td>
+<td class=''><pre><span  class=''>    public String getOpCodeFromBinary(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_195'/>
+195
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_195'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_196'/>
+196
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_196'></a>
+</td>
+<td class=''><pre><span  class=''>        //get opcode and get its name and return it</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_197'/>
+197
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_197'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        Integer opcode = new Integer(command &#62;&#62; 24);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_198'/>
+198
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_198'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (commands.get(opcode) != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_199'/>
+199
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_199'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            String s = &#34;&#34; + opcode;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_200'/>
+200
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_200'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_201'/>
+201
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_201'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_202'/>
+202
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_202'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_203'/>
+203
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_203'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_204'/>
+204
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_204'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_205'/>
+205
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_205'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_206'/>
+206
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_206'></a>
+</td>
+<td class=''><pre><span  class=''>     * If a command has a first register value then this function returns</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_207'/>
+207
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_207'></a>
+</td>
+<td class=''><pre><span  class=''>     * it. (NOP has none, thus it would return &#34;&#34;) Normally value would</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_208'/>
+208
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_208'></a>
+</td>
+<td class=''><pre><span  class=''>     * be a value from R0 to R7</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_209'/>
+209
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_209'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_210'/>
+210
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_210'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_211'/>
+211
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_211'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Possible register value in a String format.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_212'/>
+212
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_212'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_213'/>
+213
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_213'></a>
+</td>
+<td class=''><pre><span  class=''>    public String getFirstRegisterFromBinary(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_214'/>
+214
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_214'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_215'/>
+215
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_215'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        int i = command &#62;&#62; 21; //remove addr, 2. register, memorymode</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_216'/>
+216
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_216'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        i = i &#38; 7;             //get 1. register and check its name</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_217'/>
+217
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_217'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String s = (String) registerData[i][0];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_218'/>
+218
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_218'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_219'/>
+219
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_219'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_220'/>
+220
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_220'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_221'/>
+221
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_221'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_222'/>
+222
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_222'></a>
+</td>
+<td class=''><pre><span  class=''>     * Function returns possible memory address mode from a binary command</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_223'/>
+223
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_223'></a>
+</td>
+<td class=''><pre><span  class=''>     * given as a parameter. Four possible values (non excistent, and</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_224'/>
+224
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_224'></a>
+</td>
+<td class=''><pre><span  class=''>     * three legal values)</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_225'/>
+225
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_225'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_226'/>
+226
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_226'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_227'/>
+227
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_227'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Memory address mode from binary command in a String format.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_228'/>
+228
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_228'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_229'/>
+229
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_229'></a>
+</td>
+<td class=''><pre><span  class=''>    public String getMemoryModeFromBinary(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_230'/>
+230
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_230'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_231'/>
+231
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_231'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        int i = command &#62;&#62; 19; //remove addr and second register</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_232'/>
+232
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_232'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        i = i &#38; 3;             //get memorymode</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_233'/>
+233
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_233'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String operationCode = getOpCodeFromBinary(binaryCommand);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_234'/>
+234
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_234'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        Integer opcode = new Integer(operationCode);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_235'/>
+235
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_235'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        Integer params = (Integer) parameters.get(opcode);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_236'/>
+236
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_236'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_237'/>
+237
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_237'></a>
+</td>
+<td class=''><pre><span  class=''>        /* Store and jumps use less memoryfetches so we need to return</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_238'/>
+238
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_238'></a>
+</td>
+<td class=''><pre><span  class=''>            different symbols for them.*/</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_239'/>
+239
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_239'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_240'/>
+240
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_240'>8</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (params.intValue() == 6 || params.intValue() == 8) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_241'/>
+241
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_241'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (i == 0) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_242'/>
+242
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_242'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_243'/>
+243
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_243'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_244'/>
+244
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_244'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (i == 1) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_245'/>
+245
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_245'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return &#34;@&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_246'/>
+246
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_246'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_247'/>
+247
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_247'>6</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if (i == 2 || i == 3) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_248'/>
+248
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_248'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_249'/>
+249
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_249'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_250'/>
+250
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_250'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_251'/>
+251
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_251'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (i == 0) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_252'/>
+252
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_252'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return &#34;=&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_253'/>
+253
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_253'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_254'/>
+254
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_254'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (i == 1) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_255'/>
+255
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_255'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_256'/>
+256
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_256'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_257'/>
+257
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_257'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_258'/>
+258
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_258'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (i == 2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_259'/>
+259
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_259'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return &#34;@&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_260'/>
+260
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_260'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_261'/>
+261
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_261'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_262'/>
+262
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_262'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_263'/>
+263
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_263'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_264'/>
+264
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_264'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_265'/>
+265
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_265'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_266'/>
+266
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_266'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_267'/>
+267
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_267'></a>
+</td>
+<td class=''><pre><span  class=''>     * If a command has second register value, this function returns it</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_268'/>
+268
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_268'></a>
+</td>
+<td class=''><pre><span  class=''>     * &#34;&#34; or R0 to R7).</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_269'/>
+269
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_269'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_270'/>
+270
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_270'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_271'/>
+271
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_271'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Possible other register from binary command in a String format.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_272'/>
+272
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_272'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_273'/>
+273
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_273'></a>
+</td>
+<td class=''><pre><span  class=''>    public String getSecondRegisterFromBinary(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_274'/>
+274
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_274'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_275'/>
+275
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_275'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        int i = command &#62;&#62; 16; //remove address and get first three bits</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_276'/>
+276
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_276'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        i = i &#38; 7;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_277'/>
+277
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_277'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String s = (String) registerData[i][0];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_278'/>
+278
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_278'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_279'/>
+279
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_279'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_280'/>
+280
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_280'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_281'/>
+281
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_281'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_282'/>
+282
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_282'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_283'/>
+283
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_283'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_284'/>
+284
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_284'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_285'/>
+285
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_285'></a>
+</td>
+<td class=''><pre><span  class=''>     * If a given binary represents a valid command that has an address</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_286'/>
+286
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_286'></a>
+</td>
+<td class=''><pre><span  class=''>     * then this function returns it.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_287'/>
+287
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_287'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_288'/>
+288
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_288'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param binaryCommand The command&#39;s binary-form representation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_289'/>
+289
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_289'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Address part of the binary command in a String format.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_290'/>
+290
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_290'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_291'/>
+291
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_291'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_292'/>
+292
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_292'></a>
+</td>
+<td class=''><pre><span  class=''>    public String getAddressFromBinary(int binaryCommand) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_293'/>
+293
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_293'></a>
+</td>
+<td class='covered'><pre><span  class=''>        int command = binaryCommand;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_294'/>
+294
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_294'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        int i = command &#38; 65535; //AND first 16 bits</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_295'/>
+295
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_295'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_296'/>
+296
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_296'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String binaryString = StringUtils.intToBinary(i, 16);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_297'/>
+297
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_297'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_298'/>
+298
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_298'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        i = StringUtils.binaryToInt(binaryString, true);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_299'/>
+299
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_299'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_300'/>
+300
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_300'>4</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        String s = &#34;&#34; + i;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_301'/>
+301
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_301'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return s;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_302'/>
+302
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_302'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_303'/>
+303
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_303'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@18ea6e6b_304'/>
+304
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_304'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_40'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='SURVIVED'>Replaced constant value of 38 with 39 : SURVIVED</p> <p class='SURVIVED'>Substituted 38 with 39 : SURVIVED</p> <p class='KILLED'>Removed assignment to member variable commands : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_41'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='SURVIVED'>Replaced constant value of 38 with 39 : SURVIVED</p> <p class='KILLED'>Removed assignment to member variable parameters : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='SURVIVED'>Substituted 38 with 39 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_43'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetOpCodeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 38 with 39 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Changed increment from 1 to -1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetOpCodeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 38 with 39 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_44'/> 
+
+<p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/util/HashMap::put : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_45'/> 
+
+<p class='KILLED'>Substituted 2 with 3 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 2 with 3 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/util/HashMap::put : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_72'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getOpCodeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_73'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_74'>74</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_74'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_76'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_77'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::get : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_78'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_79'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_81'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_82'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_85'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::get : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_87'>87</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_87'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::intValue : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_89'>89</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_89'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_92'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_95'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_96'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_97'>97</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_97'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_100'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_101'>101</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_101'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_104'>104</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_104'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_106'>106</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_106'/> 
+
+<p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/String::equals : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_107'>107</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_107'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_109'>109</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_109'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_110'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_111'>111</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_111'/> 
+
+<p class='NO_COVERAGE'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_112'>112</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_112'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::&#60;init&#62; : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::toString : NO_COVERAGE</p> <p class='NO_COVERAGE'>removed call to java/lang/StringBuilder::append : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_113'>113</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_113'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_116'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_117'>117</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_117'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_118'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_119'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_120'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_122'>122</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_122'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_126'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_127'>127</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_127'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_128'>128</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_128'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_131'>131</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_131'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_132'>132</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_132'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_133'>133</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_133'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_134'>134</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_134'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_135'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_137'>137</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_137'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_142'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_144'>144</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_144'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/Integer::parseInt : KILLED -> fi.helsinki.cs.titokone.BinaryTest.testBinaryToApplication(fi.helsinki.cs.titokone.BinaryTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_145'>145</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_145'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/String::equals : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_146'>146</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_146'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_149'>149</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_149'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/devices/DeviceNames::lookupByValue : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_150'>150</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_150'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_151'>151</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_151'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/String::toUpperCase : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_152'>152</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_152'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_155'>155</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_155'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_156'>156</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_156'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_157'>157</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_157'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_160'>160</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_160'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_161'>161</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_161'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_162'>162</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_162'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_163'>163</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_163'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_165'>165</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_165'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_169'>169</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_169'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_170'>170</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_170'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_171'>171</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_171'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/Integer::parseInt : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_173'>173</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_173'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/SvcNames::lookupByValue : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_174'>174</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_174'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_175'>175</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_175'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/String::toUpperCase : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_177'>177</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_177'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_181'>181</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_181'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::binaryToString to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_197'>197</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_197'/> 
+
+<p class='KILLED'>Replaced Shift Right with Shift Left : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 24 with 25 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/Integer::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 24 with 25 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_198'>198</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_198'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::get : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_199'>199</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_199'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_200'>200</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_200'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getOpCodeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_202'>202</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_202'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getOpCodeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetOpCodeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_215'>215</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_215'/> 
+
+<p class='KILLED'>Replaced constant value of 21 with 22 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 21 with 22 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced Shift Right with Shift Left : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_216'>216</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_216'/> 
+
+<p class='KILLED'>Substituted 7 with 8 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced bitwise AND with OR : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 7 with 8 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_217'>217</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_217'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_218'>218</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_218'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getFirstRegisterFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_231'>231</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_231'/> 
+
+<p class='KILLED'>Replaced Shift Right with Shift Left : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 19 with 20 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 19 with 20 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_232'>232</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_232'/> 
+
+<p class='KILLED'>Replaced bitwise AND with OR : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 3 with 4 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 3 with 4 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_233'>233</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_233'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/BinaryInterpreter::getOpCodeFromBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_234'>234</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_234'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_235'>235</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_235'/> 
+
+<p class='KILLED'>removed call to java/util/HashMap::get : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_240'>240</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_240'/> 
+
+<p class='KILLED'>Substituted 6 with 7 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 6 with 7 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/Integer::intValue : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 8 with 9 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/Integer::intValue : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 8 with 9 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_241'>241</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_241'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_242'>242</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_242'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_244'>244</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_244'/> 
+
+<p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 1 with 0 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_245'>245</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_245'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_247'>247</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_247'/> 
+
+<p class='NO_COVERAGE'>Substituted 3 with 4 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 2 with 3 : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 2 with 3 : NO_COVERAGE</p> <p class='NO_COVERAGE'>negated conditional : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 3 with 4 : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_248'>248</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_248'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_251'>251</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_251'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_252'>252</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_252'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_254'>254</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_254'/> 
+
+<p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_255'>255</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_255'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_258'>258</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_258'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 2 with 3 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 2 with 3 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_259'>259</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_259'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_262'>262</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_262'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getMemoryModeFromBinary to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_275'>275</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_275'/> 
+
+<p class='KILLED'>Replaced Shift Right with Shift Left : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 16 with 17 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 16 with 17 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_276'>276</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_276'/> 
+
+<p class='KILLED'>Replaced bitwise AND with OR : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 7 with 8 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 7 with 8 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_277'>277</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_277'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_279'>279</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_279'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getSecondRegisterFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_294'>294</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_294'/> 
+
+<p class='KILLED'>Replaced constant value of 65535 with 65536 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced bitwise AND with OR : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 65535 with 65536 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_296'>296</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_296'/> 
+
+<p class='KILLED'>Substituted 16 with 17 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Replaced constant value of 16 with 17 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/StringUtils::intToBinary : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_298'>298</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_298'/> 
+
+<p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/StringUtils::binaryToInt : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_300'>300</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_300'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@18ea6e6b_301'>301</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@18ea6e6b_301'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/BinaryInterpreter::getAddressFromBinary to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest)</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.helsinki.cs.titokone.BinaryTest.testBinary(fi.helsinki.cs.titokone.BinaryTest) (17 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetAddressFrombinary(fi.helsinki.cs.titokone.BinaryInterpreterTest) (1 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetMemoryModeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest) (1 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetOpCodeFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest) (1 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetSecondRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest) (1 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testLoad(fi.helsinki.cs.titokone.ControlTest) (141 ms)</li><li>fi.helsinki.cs.titokone.BinaryTest.testToString(fi.helsinki.cs.titokone.BinaryTest) (2 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testBinaryToString(fi.helsinki.cs.titokone.BinaryInterpreterTest) (18 ms)</li><li>fi.helsinki.cs.titokone.BinaryInterpreterTest.testGetFirstRegisterFromBinary(fi.helsinki.cs.titokone.BinaryInterpreterTest) (1 ms)</li><li>fi.helsinki.cs.titokone.BinaryTest.testBinaryToApplication(fi.helsinki.cs.titokone.BinaryTest) (7 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>

@@ -1,0 +1,2606 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>Translator.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_5'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_6'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_8'></a>
+</td>
+<td class=''><pre><span  class=''>import java.text.MessageFormat;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_10'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.logging.Logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_11'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_12'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_13'></a>
+</td>
+<td class=''><pre><span  class=''> * This class deals with translating strings. It also remembers which</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_14'></a>
+</td>
+<td class=''><pre><span  class=''> * language is currently set, but does not know specifically what</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_15'></a>
+</td>
+<td class=''><pre><span  class=''> * languages are currently available.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_16'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_17'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>public class Translator {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_18'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_19'></a>
+</td>
+<td class=''><pre><span  class=''>    // TODO: get rid of this class, replace it with standard use of resource bundles and keep all translations in properties files</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_20'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_21'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_22'></a>
+</td>
+<td class=''><pre><span  class=''>     * This name identifies the resource files containing translations</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_23'></a>
+</td>
+<td class=''><pre><span  class=''>     * for this software.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_24'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_25'></a>
+</td>
+<td class=''><pre><span  class=''>    // XXX: non-final for testing purposes</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_26'></a>
+</td>
+<td class='covered'><pre><span  class=''>    public static String resourceFamilyName = &#34;fi.helsinki.cs.titokone.translations.Translations&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_27'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_28'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_29'></a>
+</td>
+<td class=''><pre><span  class=''>     * This field contains the default locale.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_30'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_31'></a>
+</td>
+<td class='covered'><pre><span  class=''>    public static final Locale defaultLocale = Locale.ENGLISH;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_32'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_33'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_34'></a>
+</td>
+<td class=''><pre><span  class=''>     * This field stores the current locale. It defaults to</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_35'></a>
+</td>
+<td class=''><pre><span  class=''>     * defaultLocale.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_36'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_37'></a>
+</td>
+<td class='covered'><pre><span  class=''>    private static Locale currentLocale = defaultLocale;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_38'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_39'></a>
+</td>
+<td class=''><pre><span  class=''>    // XXX: for testing purposes, resourceFamilyName can change after this class is initialized, so we can&#39;t save it in a field</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_40'/>
+40
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_40'></a>
+</td>
+<td class=''><pre><span  class=''>    private static ResourceBundle defaultTranslations() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_41'/>
+41
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_41'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ResourceBundle.getBundle(resourceFamilyName, defaultLocale);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_42'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_43'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_44'/>
+44
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_44'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_45'></a>
+</td>
+<td class=''><pre><span  class=''>     * This field stores the current ResourceBundle in use.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_46'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_47'/>
+47
+</td>
+<td class='uncertain'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_47'>1</a>
+</td>
+<td class='covered'><pre><span  class='uncertain'>    private static ResourceBundle translations = defaultTranslations();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_48'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_49'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_50'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_51'></a>
+</td>
+<td class=''><pre><span  class=''>     * This function translates a fixed string to the currently used</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_52'></a>
+</td>
+<td class=''><pre><span  class=''>     * language. If the current language has no string corresponding to</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_53'></a>
+</td>
+<td class=''><pre><span  class=''>     * the key, a default translation is used from Translations.class.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_54'/>
+54
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_54'></a>
+</td>
+<td class=''><pre><span  class=''>     * If that class does not have the translation either, the keystring</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_55'></a>
+</td>
+<td class=''><pre><span  class=''>     * itself is returned. The translation therefore fails silently.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_56'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_57'/>
+57
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_57'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param keyString A string key that identifies the translation in a</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_58'></a>
+</td>
+<td class=''><pre><span  class=''>     *                  Translations*class file.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_59'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The translated string, if available, or something otherwise</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_60'/>
+60
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_60'></a>
+</td>
+<td class=''><pre><span  class=''>     *         usable.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_61'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_62'></a>
+</td>
+<td class=''><pre><span  class=''>    public static String translate(String keyString) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_63'></a>
+</td>
+<td class='covered'><pre><span  class=''>        String result = null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_64'></a>
+</td>
+<td class='covered'><pre><span  class=''>        Logger logger =</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_65'></a>
+</td>
+<td class=''><pre><span  class=''>                Logger.getLogger(Translator.class.getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_66'></a>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_67'/>
+67
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_67'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            result = translations.getString(keyString);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_68'></a>
+</td>
+<td class='covered'><pre><span  class=''>        } catch (MissingResourceException untranslatedKey) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_69'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger.fine(&#34;Translation for &#34; + keyString + &#34; not found in &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_70'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;current set.&#34;); // No Message used here.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_71'></a>
+</td>
+<td class='covered'><pre><span  class=''>            result = null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_72'/>
+72
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_72'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (NullPointerException oddity) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_73'/>
+73
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_73'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            logger.fine(&#34;ResourceBundle getString would not just return &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_74'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;null, it insists on casting. Trasnslating string &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_75'/>
+75
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_75'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;&#39;&#34; + keyString + &#34;&#39; failed.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_76'/>
+76
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_76'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            result = null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_77'/>
+77
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_77'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_78'/>
+78
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_78'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (result == null) { // If there was no luck, try the untranslated.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_79'></a>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_80'/>
+80
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_80'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                result = defaultTranslations().getString(keyString);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_81'></a>
+</td>
+<td class='covered'><pre><span  class=''>            } catch (MissingResourceException totallyUnknownKey) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_82'/>
+82
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_82'></a>
+</td>
+<td class='covered'><pre><span  class=''>                logger.fine(&#34;Translation for &#34; + keyString + &#34; not found &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_83'></a>
+</td>
+<td class=''><pre><span  class=''>                        &#34;in default set either.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_84'></a>
+</td>
+<td class='covered'><pre><span  class=''>                result = null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_85'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>            } catch (NullPointerException oddity) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_86'/>
+86
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_86'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                logger.fine(&#34;Null pointer exception repeated when trying &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_87'/>
+87
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_87'></a>
+</td>
+<td class=''><pre><span  class=''>                        &#34;default translations.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_88'></a>
+</td>
+<td class='uncovered'><pre><span  class=''>                result = null;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_89'/>
+89
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_89'></a>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_90'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_91'/>
+91
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_91'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (result == null) // If there was still no luck, go for the keystr.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_92'/>
+92
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_92'></a>
+</td>
+<td class=''><pre><span  class=''>        {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_93'/>
+93
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_93'></a>
+</td>
+<td class='covered'><pre><span  class=''>            result = keyString;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_94'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_95'/>
+95
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_95'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return result;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_96'/>
+96
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_96'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_97'/>
+97
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_97'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_98'/>
+98
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_98'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_99'/>
+99
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_99'></a>
+</td>
+<td class=''><pre><span  class=''>     * This function translates a template string to the currently</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_100'/>
+100
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_100'></a>
+</td>
+<td class=''><pre><span  class=''>     * used language and replaces any {i} markers in it with strings</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_101'/>
+101
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_101'></a>
+</td>
+<td class=''><pre><span  class=''>     * from the parameters array. If the current language has no</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_102'/>
+102
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_102'></a>
+</td>
+<td class=''><pre><span  class=''>     * string corresponding to the key, a default translation is used</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_103'/>
+103
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_103'></a>
+</td>
+<td class=''><pre><span  class=''>     * from Translations.class.  If that class does not have the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_104'/>
+104
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_104'></a>
+</td>
+<td class=''><pre><span  class=''>     * translation either, the keystring itself is returned. The</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_105'/>
+105
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_105'></a>
+</td>
+<td class=''><pre><span  class=''>     * translation therefore fails silently. The translation string is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_106'/>
+106
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_106'></a>
+</td>
+<td class=''><pre><span  class=''>     * fetched from the current ResourceBundle in use, and the replacement</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_107'/>
+107
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_107'></a>
+</td>
+<td class=''><pre><span  class=''>     * is done with the help of java.text.MessageFormat.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_108'/>
+108
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_108'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_109'/>
+109
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_109'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param keyString  A string key that identifies the translation in a</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_110'/>
+110
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_110'></a>
+</td>
+<td class=''><pre><span  class=''>     *                   Translations*class file.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_111'/>
+111
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_111'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param parameters A string array containing strings to replace {i}</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_112'/>
+112
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_112'></a>
+</td>
+<td class=''><pre><span  class=''>     *                   markers in the string in order - that is, parameters[0] replaces {0},</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_113'/>
+113
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_113'></a>
+</td>
+<td class=''><pre><span  class=''>     *                   parameters[1] replaces {1} etc.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_114'/>
+114
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_114'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The translated string, if available, or something otherwise</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_115'/>
+115
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_115'></a>
+</td>
+<td class=''><pre><span  class=''>     *         usable, with {i} markers replaced from the parameters array as</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_116'/>
+116
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_116'></a>
+</td>
+<td class=''><pre><span  class=''>     *         far as there are available replacements.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_117'/>
+117
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_117'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_118'/>
+118
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_118'></a>
+</td>
+<td class=''><pre><span  class=''>    public static String translate(String keyString, String[] parameters) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_119'/>
+119
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_119'></a>
+</td>
+<td class=''><pre><span  class=''>        MessageFormat formatter;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_120'/>
+120
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_120'></a>
+</td>
+<td class=''><pre><span  class=''>        // First, we translate the basic string as if it had no parameters,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_121'/>
+121
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_121'></a>
+</td>
+<td class=''><pre><span  class=''>        // then we replace any {i} fields in it by using MessageFormat&#39;s</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_122'/>
+122
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_122'></a>
+</td>
+<td class=''><pre><span  class=''>        // format method, with the replacements as its parameter. The</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_123'/>
+123
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_123'></a>
+</td>
+<td class=''><pre><span  class=''>        // replacement is done according to locale, although this is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_124'/>
+124
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_124'></a>
+</td>
+<td class=''><pre><span  class=''>        // unlikely to affect anything in our current implementation.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_125'/>
+125
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_125'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        formatter = new MessageFormat(translate(keyString));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_126'/>
+126
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_126'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        formatter.setLocale(currentLocale);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_127'/>
+127
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_127'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return formatter.format(parameters).toString();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_128'/>
+128
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_128'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_129'/>
+129
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_129'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_130'/>
+130
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_130'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_131'/>
+131
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_131'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method sets the current locale in use and fetches a</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_132'/>
+132
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_132'></a>
+</td>
+<td class=''><pre><span  class=''>     * corresponding ResourceBundle that contains the translations most</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_133'/>
+133
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_133'></a>
+</td>
+<td class=''><pre><span  class=''>     * suitable for this locale. This may mean the default English</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_134'/>
+134
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_134'></a>
+</td>
+<td class=''><pre><span  class=''>     * translation if there is nothing better available.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_135'/>
+135
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_135'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_136'/>
+136
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_136'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param newLocale The locale to switch to, eg. new Locale(&#34;fi&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_137'/>
+137
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_137'></a>
+</td>
+<td class=''><pre><span  class=''>     *                  &#34;FI&#34;).</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_138'/>
+138
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_138'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_139'/>
+139
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_139'></a>
+</td>
+<td class=''><pre><span  class=''>    public static void setLocale(Locale newLocale) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_140'/>
+140
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_140'></a>
+</td>
+<td class='covered'><pre><span  class=''>        Logger logger =</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_141'/>
+141
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_141'></a>
+</td>
+<td class=''><pre><span  class=''>                Logger.getLogger(Translator.class.getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_142'/>
+142
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_142'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (newLocale == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_143'/>
+143
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_143'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(&#34;Trying to set locale to null.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_144'/>
+144
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_144'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_145'/>
+145
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_145'></a>
+</td>
+<td class='covered'><pre><span  class=''>        currentLocale = newLocale;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_146'/>
+146
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_146'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        translations = ResourceBundle.getBundle(resourceFamilyName, newLocale);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_147'/>
+147
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_147'></a>
+</td>
+<td class='covered'><pre><span  class=''>        logger.fine(&#34;Locale changed, new locale &#34; + newLocale.toString() + &#34;, translations from class &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_148'/>
+148
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_148'></a>
+</td>
+<td class=''><pre><span  class=''>                translations.getClass().getName() + &#34;.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_149'/>
+149
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_149'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_150'/>
+150
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_150'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_151'/>
+151
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_151'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_152'/>
+152
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_152'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method sets the current locale in use and tries to fetch the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_153'/>
+153
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_153'></a>
+</td>
+<td class=''><pre><span  class=''>     * translation from translationPath. Use of setLocale(Locale) is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_154'/>
+154
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_154'></a>
+</td>
+<td class=''><pre><span  class=''>     * recommended, but this method enables the user to have very exact</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_155'/>
+155
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_155'></a>
+</td>
+<td class=''><pre><span  class=''>     * control over where the translations are found.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_156'/>
+156
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_156'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_157'/>
+157
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_157'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param newLocale       The locale to switch to, eg. new Locale(&#34;fi&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_158'/>
+158
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_158'></a>
+</td>
+<td class=''><pre><span  class=''>     *                        &#34;FI&#34;).</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_159'/>
+159
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_159'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param newTranslations A class containing the translations for this</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_160'/>
+160
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_160'></a>
+</td>
+<td class=''><pre><span  class=''>     *                        locale. If the translations are located in the standard place,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_161'/>
+161
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_161'></a>
+</td>
+<td class=''><pre><span  class=''>     *                        setLocale(Locale) can be used.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_162'/>
+162
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_162'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_163'/>
+163
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_163'></a>
+</td>
+<td class=''><pre><span  class=''>    public static void setLocale(Locale newLocale,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_164'/>
+164
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_164'></a>
+</td>
+<td class=''><pre><span  class=''>                                 ResourceBundle newTranslations) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_165'/>
+165
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_165'></a>
+</td>
+<td class='covered'><pre><span  class=''>        Logger logger =</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_166'/>
+166
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_166'></a>
+</td>
+<td class=''><pre><span  class=''>                Logger.getLogger(Translator.class.getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_167'/>
+167
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_167'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (newLocale == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_168'/>
+168
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_168'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(&#34;Trying to set locale to &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_169'/>
+169
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_169'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;null.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_170'/>
+170
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_170'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_171'/>
+171
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_171'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (newTranslations == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_172'/>
+172
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_172'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(&#34;Trying to set translations &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_173'/>
+173
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_173'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;to null.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_174'/>
+174
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_174'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_175'/>
+175
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_175'></a>
+</td>
+<td class='covered'><pre><span  class=''>        currentLocale = newLocale;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_176'/>
+176
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_176'></a>
+</td>
+<td class='covered'><pre><span  class=''>        translations = newTranslations;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_177'/>
+177
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_177'></a>
+</td>
+<td class='covered'><pre><span  class=''>        logger.fine(&#34;Locale changed with set translations, new locale &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_178'/>
+178
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_178'></a>
+</td>
+<td class=''><pre><span  class=''>                newLocale.toString() +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_179'/>
+179
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_179'></a>
+</td>
+<td class=''><pre><span  class=''>                &#34;, translations from class &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_180'/>
+180
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_180'></a>
+</td>
+<td class=''><pre><span  class=''>                translations.getClass().getName() + &#34;.&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_181'/>
+181
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_181'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_182'/>
+182
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_182'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_183'/>
+183
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_183'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_184'/>
+184
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_184'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns the resource bundle in use.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_185'/>
+185
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_185'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_186'/>
+186
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_186'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The resource bundle set to correspond to the current</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_187'/>
+187
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_187'></a>
+</td>
+<td class=''><pre><span  class=''>     *         locale.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_188'/>
+188
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_188'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_189'/>
+189
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_189'></a>
+</td>
+<td class=''><pre><span  class=''>    public static ResourceBundle getResourceBundle() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_190'/>
+190
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_190'>1</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return translations;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_191'/>
+191
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_191'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@2a8b6bf9_192'/>
+192
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_192'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_41'/> 
+
+<p class='KILLED'>removed call to java/util/ResourceBundle::getBundle : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> <p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Translator::defaultTranslations to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_47'/> 
+
+<p class='TIMED_OUT'>removed call to fi/helsinki/cs/titokone/Translator::defaultTranslations : TIMED_OUT</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_67'/> 
+
+<p class='KILLED'>removed call to java/util/ResourceBundle::getString : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testBasicTranslate(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_78'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_80'/> 
+
+<p class='KILLED'>removed call to java/util/ResourceBundle::getString : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/Translator::defaultTranslations : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_91'>91</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_91'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_95'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Translator::translate to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_125'>125</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_125'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Translator::translate : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> <p class='KILLED'>removed call to java/text/MessageFormat::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_126'/> 
+
+<p class='SURVIVED'>removed call to java/text/MessageFormat::setLocale : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_127'>127</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_127'/> 
+
+<p class='KILLED'>removed call to java/lang/String::toString : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> <p class='KILLED'>removed call to java/text/MessageFormat::format : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> <p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Translator::translate to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_142'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_143'>143</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_143'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/IllegalArgumentException::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_146'>146</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_146'/> 
+
+<p class='KILLED'>removed call to java/util/ResourceBundle::getBundle : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_167'>167</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_167'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_168'>168</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_168'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/IllegalArgumentException::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_171'>171</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_171'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_172'>172</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_172'/> 
+
+<p class='NO_COVERAGE'>removed call to java/lang/IllegalArgumentException::&#60;init&#62; : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@2a8b6bf9_190'>190</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@2a8b6bf9_190'/> 
+
+<p class='NO_COVERAGE'>mutated return of Object value for fi/helsinki/cs/titokone/Translator::getResourceBundle to ( if (x != null) null else throw new RuntimeException ) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.helsinki.cs.titokone.BinaryTest.testBinary(fi.helsinki.cs.titokone.BinaryTest) (17 ms)</li><li>fi.helsinki.cs.titokone.TranslatorTest.testBasicLogging(fi.helsinki.cs.titokone.TranslatorTest) (3 ms)</li><li>fi.helsinki.cs.titokone.SettingsTest.testParse(fi.helsinki.cs.titokone.SettingsTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testLoad(fi.helsinki.cs.titokone.ControlTest) (141 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest) (9 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSetDefaultStdin(fi.helsinki.cs.titokone.ControlTest) (40 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryGuessFilename(fi.helsinki.cs.titokone.ControlTest) (38 ms)</li><li>fi.helsinki.cs.titokone.TranslatorTest.testBasicTranslate(fi.helsinki.cs.titokone.TranslatorTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryFileName(fi.helsinki.cs.titokone.ControlTest) (55 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testCompile(fi.helsinki.cs.titokone.ControlTest) (41 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest) (2 ms)</li><li>fi.helsinki.cs.titokone.TranslatorTest.testReplacementTranslation(fi.helsinki.cs.titokone.TranslatorTest) (1 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testChangeMemorySize(fi.helsinki.cs.titokone.ControlTest) (50 ms)</li><li>fi.helsinki.cs.titokone.SettingsTest.testExtract(fi.helsinki.cs.titokone.SettingsTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetApplicationDefinitions(fi.helsinki.cs.titokone.ControlTest) (28 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testOpenSource(fi.helsinki.cs.titokone.ControlTest) (30 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testConstructorAndChangeMemorySize(fi.helsinki.cs.titokone.ControlTest) (324 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetBinary(fi.helsinki.cs.titokone.ControlTest) (36 ms)</li><li>fi.helsinki.cs.titokone.SettingsTest.testSetAndGetValue(fi.helsinki.cs.titokone.SettingsTest) (23 ms)</li><li>fi.helsinki.cs.titokone.TranslatorTest.testResourceLocating(fi.helsinki.cs.titokone.TranslatorTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>

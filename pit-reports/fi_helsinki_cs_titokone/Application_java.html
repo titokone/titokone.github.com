@@ -1,0 +1,4956 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<h1>Application.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_1'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2004-2006 University of Helsinki, Department of Computer Science</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_2'></a>
+</td>
+<td class=''><pre><span  class=''>// Copyright &#194;&#169; 2012 various contributors</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_3'></a>
+</td>
+<td class=''><pre><span  class=''>// This software is released under GNU Lesser General Public License 2.1.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_4'></a>
+</td>
+<td class=''><pre><span  class=''>// The license text is at http://www.gnu.org/licenses/lgpl-2.1.html</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_5'></a>
+</td>
+<td class=''><pre><span  class=''>package fi.helsinki.cs.titokone;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_6'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_7'></a>
+</td>
+<td class=''><pre><span  class=''>import fi.helsinki.cs.ttk91.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_8'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.logging.Logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_10'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_11'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_12'></a>
+</td>
+<td class=''><pre><span  class=''> * This class represents a compiled TTK-91-application. It also contains</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_13'></a>
+</td>
+<td class=''><pre><span  class=''> * information about what has gotten printed during its running and</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_14'></a>
+</td>
+<td class=''><pre><span  class=''> * what it should be reading as various inputs during its run.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_15'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_16'></a>
+</td>
+<td class=''><pre><span  class=''>public class Application implements TTK91Application {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_17'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_18'></a>
+</td>
+<td class=''><pre><span  class=''>     * This field lists the delimiters accepted as any-combination</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_19'></a>
+</td>
+<td class=''><pre><span  class=''>     * delimitation markup in a string intended for either keyboard</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_20'></a>
+</td>
+<td class=''><pre><span  class=''>     * or stdin input.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_21'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_22'></a>
+</td>
+<td class=''><pre><span  class=''>    public static final String DELIMITERS = &#34;[ \n\r\t\f,.:;]+&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_23'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_24'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_25'></a>
+</td>
+<td class=''><pre><span  class=''>     * This array contains the code to the application; one command</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_26'></a>
+</td>
+<td class=''><pre><span  class=''>     * per line. The initial FP value can be calculated from</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_27'></a>
+</td>
+<td class=''><pre><span  class=''>     * code.length - 1. If the code area is empty, this field contains</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_28'></a>
+</td>
+<td class=''><pre><span  class=''>     * a zero-length array.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_29'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_30'></a>
+</td>
+<td class=''><pre><span  class=''>    private MemoryLine[] code;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_31'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_32'></a>
+</td>
+<td class=''><pre><span  class=''>     * This array contains the initial data area of the application,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_33'></a>
+</td>
+<td class=''><pre><span  class=''>     * determined at compile time by DS and DC pseudocommands. The</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_34'></a>
+</td>
+<td class=''><pre><span  class=''>     * initial SP value can be determined from code.length +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_35'></a>
+</td>
+<td class=''><pre><span  class=''>     * initialData.length - 1. (It points to the last reserved memory</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_36'></a>
+</td>
+<td class=''><pre><span  class=''>     * address, since there is no &#34;top of stack&#34; yet.) If the data</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_37'></a>
+</td>
+<td class=''><pre><span  class=''>     * area is empty, this field contains a zero-length array.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_38'></a>
+</td>
+<td class=''><pre><span  class=''>     * For reserved but uninitialized data rows, the array contains</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_39'></a>
+</td>
+<td class=''><pre><span  class=''>     * null values.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_40'/>
+40
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_40'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_41'/>
+41
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_41'></a>
+</td>
+<td class=''><pre><span  class=''>    private MemoryLine[] initialData;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_42'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_43'></a>
+</td>
+<td class=''><pre><span  class=''>     * This field stores the local symbol table of the application.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_44'/>
+44
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_44'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_45'></a>
+</td>
+<td class=''><pre><span  class=''>    private SymbolTable symbols;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_46'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_47'/>
+47
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_47'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_48'></a>
+</td>
+<td class=''><pre><span  class=''>     * Stdout and crt store the outputs of this application.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_49'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_50'/>
+50
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_50'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>    private String stdout = &#34;&#34;, crt = &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_51'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_52'></a>
+</td>
+<td class=''><pre><span  class=''>     * Stdincontent and kbdcontent store the possible preset input</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_53'></a>
+</td>
+<td class=''><pre><span  class=''>     * of this application, and stdinpointer and kbdpointer point to</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_54'/>
+54
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_54'></a>
+</td>
+<td class=''><pre><span  class=''>     * the position that should be read next.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_55'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_56'/>
+56
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_56'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    private int[] stdincontent = new int[0], kbdcontent = new int[0];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_57'/>
+57
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_57'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>    private int stdinpointer = 0, kbdpointer = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_58'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_59'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_60'/>
+60
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_60'></a>
+</td>
+<td class=''><pre><span  class=''>     * This constructor sets up a new Application. If an application is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_61'></a>
+</td>
+<td class=''><pre><span  class=''>     * compiled from source code, the compiler will know when various</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_62'></a>
+</td>
+<td class=''><pre><span  class=''>     * symbols are used. This constructor enables the compiler or other</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_63'></a>
+</td>
+<td class=''><pre><span  class=''>     * code/data source to store the symbolic commands as well as the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_64'></a>
+</td>
+<td class=''><pre><span  class=''>     * binary into instances of MemoryLine, which can contain either</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_65'></a>
+</td>
+<td class=''><pre><span  class=''>     * only the integer values representing the command or both the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_66'></a>
+</td>
+<td class=''><pre><span  class=''>     * integer value and the symbolic form as a string. This way eg. a</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_67'/>
+67
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_67'></a>
+</td>
+<td class=''><pre><span  class=''>     * command of the value 18874378, which means STORE R1, 10, can be</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_68'></a>
+</td>
+<td class=''><pre><span  class=''>     * stored also as &#34;STORE R1, LUKU&#34; (where LUKU has been defined to be</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_69'></a>
+</td>
+<td class=''><pre><span  class=''>     * a symbol for 10) to appear more readable to a human user.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_70'></a>
+</td>
+<td class=''><pre><span  class=''>     * If you do not have this symbolic data available, eg. because the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_71'></a>
+</td>
+<td class=''><pre><span  class=''>     * application is being parsed from its binary form, you can use the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_72'/>
+72
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_72'></a>
+</td>
+<td class=''><pre><span  class=''>     * other constructor instead.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_73'/>
+73
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_73'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_74'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param code    An array containing the compiled code as MemoryLines.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_75'/>
+75
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_75'></a>
+</td>
+<td class=''><pre><span  class=''>     *                The MemoryLines represent both the integer and the symbolic form</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_76'/>
+76
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_76'></a>
+</td>
+<td class=''><pre><span  class=''>     *                of the commands. Including the symbolic form is optional. This</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_77'/>
+77
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_77'></a>
+</td>
+<td class=''><pre><span  class=''>     *                value may be null or of length 0 in the unlikely case that there</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_78'/>
+78
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_78'></a>
+</td>
+<td class=''><pre><span  class=''>     *                is no code area.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_79'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param data    An array containing the initial data area and its</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_80'/>
+80
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_80'></a>
+</td>
+<td class=''><pre><span  class=''>     *                contents as MemoryLines. The MemoryLines represent both the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_81'></a>
+</td>
+<td class=''><pre><span  class=''>     *                integer and the symbolic form of commands, but especially in</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_82'/>
+82
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_82'></a>
+</td>
+<td class=''><pre><span  class=''>     *                the case of data, including the symbolic form is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_83'></a>
+</td>
+<td class=''><pre><span  class=''>     *                optional. This value may be null or of length 0 if there is no</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_84'></a>
+</td>
+<td class=''><pre><span  class=''>     *                data area.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_85'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param symbols An instance of SymbolTable, containing the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_86'/>
+86
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_86'></a>
+</td>
+<td class=''><pre><span  class=''>     *                symbol table for this application. This value can be null if</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_87'/>
+87
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_87'></a>
+</td>
+<td class=''><pre><span  class=''>     *                there are no local symbols available. (Locally, an empty</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_88'></a>
+</td>
+<td class=''><pre><span  class=''>     *                symboltable is created.)</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_89'/>
+89
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_89'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_90'></a>
+</td>
+<td class=''><pre><span  class=''>    public Application(MemoryLine[] code, MemoryLine[] data,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_91'/>
+91
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_91'></a>
+</td>
+<td class='covered'><pre><span  class=''>                       SymbolTable symbols) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_92'/>
+92
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_92'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (code != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_93'/>
+93
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_93'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.code = code;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_94'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_95'/>
+95
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_95'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.code = new MemoryLine[0];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_96'/>
+96
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_96'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_97'/>
+97
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_97'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (data != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_98'/>
+98
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_98'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.initialData = data;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_99'/>
+99
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_99'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_100'/>
+100
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_100'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.initialData = new MemoryLine[0];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_101'/>
+101
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_101'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_102'/>
+102
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_102'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (symbols != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_103'/>
+103
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_103'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.symbols = symbols;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_104'/>
+104
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_104'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_105'/>
+105
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_105'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            this.symbols = new SymbolTable();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_106'/>
+106
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_106'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_107'/>
+107
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_107'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_108'/>
+108
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_108'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_109'/>
+109
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_109'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_110'/>
+110
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_110'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns the (initial) code area of the application.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_111'/>
+111
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_111'></a>
+</td>
+<td class=''><pre><span  class=''>     * Any self-modifying code in the application will have no</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_112'/>
+112
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_112'></a>
+</td>
+<td class=''><pre><span  class=''>     * effect on the return value; changes in the memory representation</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_113'/>
+113
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_113'></a>
+</td>
+<td class=''><pre><span  class=''>     * of the code and in the initial code are thus separated.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_114'/>
+114
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_114'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_115'/>
+115
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_115'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return An array containing the code area of the application. The</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_116'/>
+116
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_116'></a>
+</td>
+<td class=''><pre><span  class=''>     *         array will be of length 0 if for some reason this application has</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_117'/>
+117
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_117'></a>
+</td>
+<td class=''><pre><span  class=''>     *         no code area.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_118'/>
+118
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_118'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_119'/>
+119
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_119'></a>
+</td>
+<td class=''><pre><span  class=''>    public MemoryLine[] getCode() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_120'/>
+120
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_120'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return (MemoryLine[]) code.clone();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_121'/>
+121
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_121'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_122'/>
+122
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_122'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_123'/>
+123
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_123'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_124'/>
+124
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_124'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns the initial data area of the application with</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_125'/>
+125
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_125'></a>
+</td>
+<td class=''><pre><span  class=''>     * its contents. Any modifications the code does to the data area</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_126'/>
+126
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_126'></a>
+</td>
+<td class=''><pre><span  class=''>     * during its running have no effect on the return value; changes in</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_127'/>
+127
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_127'></a>
+</td>
+<td class=''><pre><span  class=''>     * the memory representation of the data and the initial state of the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_128'/>
+128
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_128'></a>
+</td>
+<td class=''><pre><span  class=''>     * data for this application are thus separated.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_129'/>
+129
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_129'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_130'/>
+130
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_130'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return An array containing the data area with its contents as</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_131'/>
+131
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_131'></a>
+</td>
+<td class=''><pre><span  class=''>     *         MemoryLines. The array will be of length 0 if this application has</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_132'/>
+132
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_132'></a>
+</td>
+<td class=''><pre><span  class=''>     *         no initial data area.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_133'/>
+133
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_133'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_134'/>
+134
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_134'></a>
+</td>
+<td class=''><pre><span  class=''>    public MemoryLine[] getInitialData() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_135'/>
+135
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_135'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return (MemoryLine[]) initialData.clone();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_136'/>
+136
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_136'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_137'/>
+137
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_137'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_138'/>
+138
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_138'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_139'/>
+139
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_139'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns the symbol table containing the application&#39;s</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_140'/>
+140
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_140'></a>
+</td>
+<td class=''><pre><span  class=''>     * local symbols.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_141'/>
+141
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_141'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_142'/>
+142
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_142'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The application&#39;s symbol table, minus global symbols like</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_143'/>
+143
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_143'></a>
+</td>
+<td class=''><pre><span  class=''>     *         HALT, unless they have been overwritten.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_144'/>
+144
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_144'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_145'/>
+145
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_145'></a>
+</td>
+<td class=''><pre><span  class=''>    public SymbolTable getSymbolTable() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_146'/>
+146
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_146'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return symbols; // Note: An actual pointer is returned here.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_147'/>
+147
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_147'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_148'/>
+148
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_148'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_149'/>
+149
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_149'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_150'/>
+150
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_150'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method stores one more line to the CRT (&#34;screen&#34;) memory</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_151'/>
+151
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_151'></a>
+</td>
+<td class=''><pre><span  class=''>     * of the application. The results can be queried by getCrt(); this</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_152'/>
+152
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_152'></a>
+</td>
+<td class=''><pre><span  class=''>     * method will not actually make the line show on any physical screen.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_153'/>
+153
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_153'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_154'/>
+154
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_154'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param line A new line to &#34;write to the screen&#34;.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_155'/>
+155
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_155'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_156'/>
+156
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_156'></a>
+</td>
+<td class=''><pre><span  class=''>    public void writeToCrt(int line) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_157'/>
+157
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_157'>8</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        crt += &#34;&#34; + line + System.getProperty(&#34;line.separator&#34;, &#34;\n&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_158'/>
+158
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_158'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_159'/>
+159
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_159'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_160'/>
+160
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_160'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_161'/>
+161
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_161'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method stores one more line to the StdOut (&#34;file&#34;) memory</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_162'/>
+162
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_162'></a>
+</td>
+<td class=''><pre><span  class=''>     * of the application. The results can be queried by getStdOut(); this</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_163'/>
+163
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_163'></a>
+</td>
+<td class=''><pre><span  class=''>     * method will not actually make the line show on any file.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_164'/>
+164
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_164'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_165'/>
+165
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_165'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param line A new line to &#34;write to the file&#34;.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_166'/>
+166
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_166'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_167'/>
+167
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_167'></a>
+</td>
+<td class=''><pre><span  class=''>    public void writeToStdOut(int line) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_168'/>
+168
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_168'>8</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        stdout += &#34;&#34; + line + System.getProperty(&#34;line.separator&#34;, &#34;\n&#34;);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_169'/>
+169
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_169'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_170'/>
+170
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_170'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_171'/>
+171
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_171'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_172'/>
+172
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_172'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method reads the next line from a keyboard &#34;buffer&#34; set up</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_173'/>
+173
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_173'></a>
+</td>
+<td class=''><pre><span  class=''>     * before by setKbd(). If setKbd() is called after this method</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_174'/>
+174
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_174'></a>
+</td>
+<td class=''><pre><span  class=''>     * has been called, the previous keyboard buffer is ignored and</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_175'/>
+175
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_175'></a>
+</td>
+<td class=''><pre><span  class=''>     * reading continues from the beginning of the new input.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_176'/>
+176
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_176'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_177'/>
+177
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_177'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The next integer corresponding to the kbd data set earlier</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_178'/>
+178
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_178'></a>
+</td>
+<td class=''><pre><span  class=''>     *         by setKbd().</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_179'/>
+179
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_179'></a>
+</td>
+<td class=''><pre><span  class=''>     * @throws TTK91NoKbdData If there is no more keyboard data</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_180'/>
+180
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_180'></a>
+</td>
+<td class=''><pre><span  class=''>     *                        available in the buffer. The caller may then decide to get</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_181'/>
+181
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_181'></a>
+</td>
+<td class=''><pre><span  class=''>     *                        their keyboard data via other routes, eg. the user.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_182'/>
+182
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_182'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_183'/>
+183
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_183'></a>
+</td>
+<td class=''><pre><span  class=''>    public int readNextFromKbd() throws TTK91NoKbdData {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_184'/>
+184
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_184'></a>
+</td>
+<td class=''><pre><span  class=''>        Logger logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_185'/>
+185
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_185'>14</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        String[] messageParams = {&#34;&#34; + kbdpointer, &#34;&#34; + kbdcontent.length};</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_186'/>
+186
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_186'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_187'/>
+187
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_187'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (kbdpointer &#62;= kbdcontent.length) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_188'/>
+188
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_188'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger = Logger.getLogger(this.getClass().getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_189'/>
+189
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_189'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger.fine(new Message(&#34;Application has no more keyboard data, &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_190'/>
+190
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_190'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;read: {0}, buffer length {1}.&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_191'/>
+191
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_191'></a>
+</td>
+<td class=''><pre><span  class=''>                    messageParams).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_192'/>
+192
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_192'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            throw new TTK91NoKbdData(new Message(&#34;No more keyboard data &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_193'/>
+193
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_193'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;stored on &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_194'/>
+194
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_194'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;application.&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_195'/>
+195
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_195'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_196'/>
+196
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_196'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return kbdcontent[kbdpointer++]; // increment post-indexing.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_197'/>
+197
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_197'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_198'/>
+198
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_198'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_199'/>
+199
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_199'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_200'/>
+200
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_200'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_201'/>
+201
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_201'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method reads the next line from a file read &#34;buffer&#34; set</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_202'/>
+202
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_202'></a>
+</td>
+<td class=''><pre><span  class=''>     * up before by setStdIn(). If setStdIn() is called after this</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_203'/>
+203
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_203'></a>
+</td>
+<td class=''><pre><span  class=''>     * method has been called, the previous file read buffer is</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_204'/>
+204
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_204'></a>
+</td>
+<td class=''><pre><span  class=''>     * ignored and reading continues from the beginning of the new</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_205'/>
+205
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_205'></a>
+</td>
+<td class=''><pre><span  class=''>     * input.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_206'/>
+206
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_206'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_207'/>
+207
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_207'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return The next integer corresponding to the file read data set</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_208'/>
+208
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_208'></a>
+</td>
+<td class=''><pre><span  class=''>     *         earlier by setStdIn().</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_209'/>
+209
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_209'></a>
+</td>
+<td class=''><pre><span  class=''>     * @throws TTK91NoStdInData If there is no more file read data</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_210'/>
+210
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_210'></a>
+</td>
+<td class=''><pre><span  class=''>     *                          available in the buffer. The caller may then decide to get their</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_211'/>
+211
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_211'></a>
+</td>
+<td class=''><pre><span  class=''>     *                          data via other routes, eg. by reading from some actual file.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_212'/>
+212
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_212'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_213'/>
+213
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_213'></a>
+</td>
+<td class=''><pre><span  class=''>    public int readNextFromStdIn() throws TTK91NoStdInData {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_214'/>
+214
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_214'></a>
+</td>
+<td class=''><pre><span  class=''>        Logger logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_215'/>
+215
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_215'>14</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        String[] messageParams = {&#34;&#34; + stdinpointer,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_216'/>
+216
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_216'></a>
+</td>
+<td class=''><pre><span  class=''>                &#34;&#34; + stdincontent.length};</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_217'/>
+217
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_217'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (stdinpointer &#62;= stdincontent.length) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_218'/>
+218
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_218'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger = Logger.getLogger(this.getClass().getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_219'/>
+219
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_219'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger.fine(new Message(&#34;Application has no more stdin data, read: &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_220'/>
+220
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_220'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;{0}, buffer length {1}.&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_221'/>
+221
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_221'></a>
+</td>
+<td class=''><pre><span  class=''>                    messageParams).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_222'/>
+222
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_222'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            throw new TTK91NoStdInData(new Message(&#34;No more stdin data &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_223'/>
+223
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_223'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;stored on &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_224'/>
+224
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_224'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;application.&#34;).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_225'/>
+225
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_225'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_226'/>
+226
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_226'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return stdincontent[stdinpointer++]; // increment post-indexing.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_227'/>
+227
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_227'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_228'/>
+228
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_228'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_229'/>
+229
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_229'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_230'/>
+230
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_230'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_231'/>
+231
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_231'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method checks whether input would be a valid string</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_232'/>
+232
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_232'></a>
+</td>
+<td class=''><pre><span  class=''>     * to give to setKbd or setStdIn.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_233'/>
+233
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_233'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_234'/>
+234
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_234'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param input The string to check.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_235'/>
+235
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_235'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return True if the string would be valid input, false</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_236'/>
+236
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_236'></a>
+</td>
+<td class=''><pre><span  class=''>     *         otherwise.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_237'/>
+237
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_237'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_238'/>
+238
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_238'></a>
+</td>
+<td class=''><pre><span  class=''>    public static boolean checkInput(String input) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_239'/>
+239
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_239'></a>
+</td>
+<td class=''><pre><span  class=''>        String[] pieces;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_240'/>
+240
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_240'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (input == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_241'/>
+241
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_241'>3</a>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_242'/>
+242
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_242'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_243'/>
+243
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_243'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        pieces = input.split(DELIMITERS);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_244'/>
+244
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_244'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (int i = 0; i &#60; pieces.length; i++) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_245'/>
+245
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_245'></a>
+</td>
+<td class=''><pre><span  class=''>            try {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_246'/>
+246
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_246'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                Integer.parseInt(pieces[i]);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_247'/>
+247
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_247'></a>
+</td>
+<td class='covered'><pre><span  class=''>            } catch (NumberFormatException notParseableToInteger) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_248'/>
+248
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_248'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                return false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_249'/>
+249
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_249'></a>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_250'/>
+250
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_250'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_251'/>
+251
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_251'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return true;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_252'/>
+252
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_252'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_253'/>
+253
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_253'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_254'/>
+254
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_254'></a>
+</td>
+<td class=''><pre><span  class=''>    /* The implementation of TTK91Application *************************/</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_255'/>
+255
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_255'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_256'/>
+256
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_256'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_257'/>
+257
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_257'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns what was written to a file during the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_258'/>
+258
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_258'></a>
+</td>
+<td class=''><pre><span  class=''>     * running of this application, and clears the buffer.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_259'/>
+259
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_259'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_260'/>
+260
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_260'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return What the application printed to a file during its last run,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_261'/>
+261
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_261'></a>
+</td>
+<td class=''><pre><span  class=''>     *         delimited with System.getProperty(&#34;line.separator&#34;, &#34;\n&#34;).</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_262'/>
+262
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_262'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_263'/>
+263
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_263'></a>
+</td>
+<td class=''><pre><span  class=''>    public String readStdOut() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_264'/>
+264
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_264'></a>
+</td>
+<td class='covered'><pre><span  class=''>        String result = stdout;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_265'/>
+265
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_265'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        stdout = &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_266'/>
+266
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_266'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return result;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_267'/>
+267
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_267'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_268'/>
+268
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_268'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_269'/>
+269
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_269'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_270'/>
+270
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_270'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method returns what was printed to the screen during the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_271'/>
+271
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_271'></a>
+</td>
+<td class=''><pre><span  class=''>     * running of this application, and clears the buffer.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_272'/>
+272
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_272'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_273'/>
+273
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_273'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return What the application printed to screen during its last</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_274'/>
+274
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_274'></a>
+</td>
+<td class=''><pre><span  class=''>     *         run, delimited with System.getProperty(&#34;line.separator&#34;, &#34;\n&#34;).</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_275'/>
+275
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_275'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_276'/>
+276
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_276'></a>
+</td>
+<td class=''><pre><span  class=''>    public String readCrt() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_277'/>
+277
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_277'></a>
+</td>
+<td class='covered'><pre><span  class=''>        String result = crt;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_278'/>
+278
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_278'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        crt = &#34;&#34;;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_279'/>
+279
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_279'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return result;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_280'/>
+280
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_280'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_281'/>
+281
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_281'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_282'/>
+282
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_282'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_283'/>
+283
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_283'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method can be used to set in advance what values any</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_284'/>
+284
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_284'></a>
+</td>
+<td class=''><pre><span  class=''>     * keyboard reads should return.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_285'/>
+285
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_285'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_286'/>
+286
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_286'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param input What (integers) the application should &#34;read from the</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_287'/>
+287
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_287'></a>
+</td>
+<td class=''><pre><span  class=''>     *              keyboard&#34; during its run, delimited by &#39;\n&#39;, &#39;\r&#39;, &#39;\r\n&#39;, &#39;\f&#39;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_288'/>
+288
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_288'></a>
+</td>
+<td class=''><pre><span  class=''>     *              &#39;\t&#39;, &#39; &#39;, &#39;,&#39;, &#39;.&#39;, &#39;:&#39;, &#39;;&#39; or any length combination</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_289'/>
+289
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_289'></a>
+</td>
+<td class=''><pre><span  class=''>     *              thereof.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_290'/>
+290
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_290'></a>
+</td>
+<td class=''><pre><span  class=''>     * @throws IllegalArgumentException If the input string is not valid.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_291'/>
+291
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_291'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_292'/>
+292
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_292'></a>
+</td>
+<td class=''><pre><span  class=''>    public void setKbd(String input) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_293'/>
+293
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_293'></a>
+</td>
+<td class=''><pre><span  class=''>        String errorMessage;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_294'/>
+294
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_294'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        String[] logMessageParams = {input, &#34;&#34;};</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_295'/>
+295
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_295'></a>
+</td>
+<td class=''><pre><span  class=''>        String[] pieces;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_296'/>
+296
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_296'></a>
+</td>
+<td class=''><pre><span  class=''>        Logger logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_297'/>
+297
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_297'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_298'/>
+298
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_298'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!checkInput(input)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_299'/>
+299
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_299'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            errorMessage = new Message(&#34;Keyboard input string \&#34;{0}\&#34; invalid, &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_300'/>
+300
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_300'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;should be eg. \\n-separated list of &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_301'/>
+301
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_301'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;integers.&#34;, input).toString();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_302'/>
+302
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_302'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            throw new IllegalArgumentException(errorMessage);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_303'/>
+303
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_303'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_304'/>
+304
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_304'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            pieces = input.split(DELIMITERS);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_305'/>
+305
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_305'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            kbdpointer = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_306'/>
+306
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_306'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            kbdcontent = new int[pieces.length];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_307'/>
+307
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_307'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (int i = 0; i &#60; pieces.length; i++) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_308'/>
+308
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_308'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                kbdcontent[i] = Integer.parseInt(pieces[i]);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_309'/>
+309
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_309'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_310'/>
+310
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_310'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger = Logger.getLogger(this.getClass().getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_311'/>
+311
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_311'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            logMessageParams[1] = &#34;&#34; + kbdcontent.length;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_312'/>
+312
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_312'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger.fine(new Message(&#34;Accepted \&#34;{0}\&#34; as keyboard input, &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_313'/>
+313
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_313'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;tokens found: {1}.&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_314'/>
+314
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_314'></a>
+</td>
+<td class=''><pre><span  class=''>                    logMessageParams).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_315'/>
+315
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_315'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_316'/>
+316
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_316'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_317'/>
+317
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_317'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_318'/>
+318
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_318'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_319'/>
+319
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_319'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_320'/>
+320
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_320'></a>
+</td>
+<td class=''><pre><span  class=''>     * This method can be used to set in advance what values any</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_321'/>
+321
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_321'></a>
+</td>
+<td class=''><pre><span  class=''>     * file reads should return. The input is checked.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_322'/>
+322
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_322'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_323'/>
+323
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_323'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param input What (integers) the application should &#34;read from</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_324'/>
+324
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_324'></a>
+</td>
+<td class=''><pre><span  class=''>     *              a file&#34; during its run, delimited by &#39;\n&#39;, &#39;\r&#39;, &#39;\r\n&#39;, &#39;\t&#39;, &#39;\f&#39;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_325'/>
+325
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_325'></a>
+</td>
+<td class=''><pre><span  class=''>     *              &#39; &#39;, &#39;,&#39;, &#39;.&#39;, &#39;:&#39;, &#39;;&#39; or any-length combination thereof.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_326'/>
+326
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_326'></a>
+</td>
+<td class=''><pre><span  class=''>     * @throws IllegalArgumentException If the input string is not valid.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_327'/>
+327
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_327'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_328'/>
+328
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_328'></a>
+</td>
+<td class=''><pre><span  class=''>    public void setStdIn(String input) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_329'/>
+329
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_329'></a>
+</td>
+<td class=''><pre><span  class=''>        String errorMessage;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_330'/>
+330
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_330'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        String[] logMessageParams = {input, &#34;&#34;};</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_331'/>
+331
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_331'></a>
+</td>
+<td class=''><pre><span  class=''>        String[] pieces;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_332'/>
+332
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_332'></a>
+</td>
+<td class=''><pre><span  class=''>        Logger logger;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_333'/>
+333
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_333'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_334'/>
+334
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_334'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!checkInput(input)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_335'/>
+335
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_335'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            errorMessage = new Message(&#34;Stdin input string \&#34;{0}\&#34; invalid, &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_336'/>
+336
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_336'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;should be eg. \\n-separated list of &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_337'/>
+337
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_337'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;integers.&#34;, input).toString();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_338'/>
+338
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_338'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            throw new IllegalArgumentException(errorMessage);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_339'/>
+339
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_339'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_340'/>
+340
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_340'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            pieces = input.split(DELIMITERS);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_341'/>
+341
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_341'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            stdinpointer = 0;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_342'/>
+342
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_342'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            stdincontent = new int[pieces.length];</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_343'/>
+343
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_343'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (int i = 0; i &#60; pieces.length; i++) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_344'/>
+344
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_344'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                stdincontent[i] = Integer.parseInt(pieces[i]);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_345'/>
+345
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_345'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_346'/>
+346
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_346'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger = Logger.getLogger(this.getClass().getPackage().getName());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_347'/>
+347
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_347'>6</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            logMessageParams[1] = &#34;&#34; + stdincontent.length;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_348'/>
+348
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_348'></a>
+</td>
+<td class='covered'><pre><span  class=''>            logger.fine(new Message(&#34;Accepted \&#34;{0}\&#34; as stdin input, &#34; +</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_349'/>
+349
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_349'></a>
+</td>
+<td class=''><pre><span  class=''>                    &#34;tokens found: {1}.&#34;,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_350'/>
+350
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_350'></a>
+</td>
+<td class=''><pre><span  class=''>                    logMessageParams).toString());</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_351'/>
+351
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_351'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_352'/>
+352
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_352'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.SourceFile@7dfebe59_353'/>
+353
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_353'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_50'/> 
+
+<p class='KILLED'>Removed assignment to member variable crt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable stdout : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_56'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable stdincontent : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable kbdcontent : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_57'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable kbdpointer : SURVIVED</p> <p class='SURVIVED'>Removed assignment to member variable stdinpointer : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_92'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_93'>93</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_93'/> 
+
+<p class='KILLED'>Removed assignment to member variable code : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_95'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable code : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_97'>97</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_97'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_98'/> 
+
+<p class='KILLED'>Removed assignment to member variable initialData : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_100'/> 
+
+<p class='KILLED'>Removed assignment to member variable initialData : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_102'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_103'>103</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_103'/> 
+
+<p class='KILLED'>Removed assignment to member variable symbols : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_105'>105</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_105'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/SymbolTable::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable symbols : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_120'/> 
+
+<p class='KILLED'>removed call to [Lfi/helsinki/cs/titokone/MemoryLine;::clone : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Application::getCode to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_135'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Application::getInitialData to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to [Lfi/helsinki/cs/titokone/MemoryLine;::clone : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_146'>146</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_146'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Application::getSymbolTable to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_157'>157</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_157'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable crt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/System::getProperty : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_168'>168</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_168'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable stdout : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::toString : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/System::getProperty : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_185'>185</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_185'/> 
+
+<p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_187'>187</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_187'/> 
+
+<p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_192'>192</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_192'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/ttk91/TTK91NoKbdData::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to fi/helsinki/cs/titokone/Message::toString : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_196'>196</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_196'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable kbdpointer : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>replaced return of integer sized value with (x == 0 ? 1 : 0) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_215'>215</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_215'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_217'>217</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_217'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_222'>222</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_222'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/ttk91/TTK91NoStdInData::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to fi/helsinki/cs/titokone/Message::toString : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_226'>226</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_226'/> 
+
+<p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable stdinpointer : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>replaced return of integer sized value with (x == 0 ? 1 : 0) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_240'>240</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_240'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_241'>241</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_241'/> 
+
+<p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>Substituted 0 with 1 : NO_COVERAGE</p> <p class='NO_COVERAGE'>replaced return of integer sized value with (x == 0 ? 1 : 0) : NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_243'>243</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_243'/> 
+
+<p class='KILLED'>removed call to java/lang/String::split : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_244'>244</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_244'/> 
+
+<p class='KILLED'>Changed increment from 1 to -1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ControlTest.testSetDefaultStdin(fi.helsinki.cs.titokone.ControlTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ControlTest.testSetDefaultStdin(fi.helsinki.cs.titokone.ControlTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_246'>246</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_246'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::parseInt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_248'>248</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_248'/> 
+
+<p class='KILLED'>replaced return of integer sized value with (x == 0 ? 1 : 0) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_251'>251</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_251'/> 
+
+<p class='KILLED'>replaced return of integer sized value with (x == 0 ? 1 : 0) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 1 with 0 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_265'>265</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_265'/> 
+
+<p class='KILLED'>Removed assignment to member variable stdout : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_266'>266</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_266'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Application::readStdOut to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_278'>278</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_278'/> 
+
+<p class='KILLED'>Removed assignment to member variable crt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_279'>279</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_279'/> 
+
+<p class='KILLED'>mutated return of Object value for fi/helsinki/cs/titokone/Application::readCrt to ( if (x != null) null else throw new RuntimeException ) : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_294'>294</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_294'/> 
+
+<p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_298'>298</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_298'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/Application::checkInput : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_299'>299</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_299'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to fi/helsinki/cs/titokone/Message::toString : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_302'>302</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_302'/> 
+
+<p class='KILLED'>removed call to java/lang/IllegalArgumentException::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_304'>304</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_304'/> 
+
+<p class='KILLED'>removed call to java/lang/String::split : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_305'>305</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_305'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable kbdpointer : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_306'>306</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_306'/> 
+
+<p class='KILLED'>Removed assignment to member variable kbdcontent : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_307'>307</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_307'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Changed increment from 1 to -1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_308'>308</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_308'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::parseInt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_311'>311</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_311'/> 
+
+<p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_330'>330</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_330'/> 
+
+<p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> <p class='SURVIVED'>Substituted 0 with 1 : SURVIVED</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='SURVIVED'>Substituted 2 with 3 : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_334'>334</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_334'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Application::checkInput : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_335'>335</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_335'/> 
+
+<p class='KILLED'>removed call to fi/helsinki/cs/titokone/Message::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to fi/helsinki/cs/titokone/Message::toString : KILLED -> fi.helsinki.cs.titokone.ControlTest.testLoad(fi.helsinki.cs.titokone.ControlTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_338'>338</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_338'/> 
+
+<p class='KILLED'>removed call to java/lang/IllegalArgumentException::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_340'>340</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_340'/> 
+
+<p class='KILLED'>removed call to java/lang/String::split : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_341'>341</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_341'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Removed assignment to member variable stdinpointer : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_342'>342</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_342'/> 
+
+<p class='KILLED'>Removed assignment to member variable stdincontent : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_343'>343</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_343'/> 
+
+<p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>negated conditional : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Substituted 0 with 1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>Changed increment from 1 to -1 : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_344'>344</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_344'/> 
+
+<p class='KILLED'>removed call to java/lang/Integer::parseInt : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.SourceFile@7dfebe59_347'>347</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.SourceFile@7dfebe59_347'/> 
+
+<p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>removed call to java/lang/StringBuilder::toString : SURVIVED</p> <p class='KILLED'>removed call to java/lang/StringBuilder::&#60;init&#62; : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='KILLED'>removed call to java/lang/StringBuilder::append : KILLED -> fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest)</p> <p class='SURVIVED'>Substituted 1 with 0 : SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>NON_VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>CONSTRUCTOR_CALL_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>INLINE_CONSTANT_MUTATOR</li>
+
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.helsinki.cs.titokone.ApplicationTest.testInputCheck(fi.helsinki.cs.titokone.ApplicationTest) (1 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testKbdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest) (9 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testLoad(fi.helsinki.cs.titokone.ControlTest) (141 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSetDefaultStdin(fi.helsinki.cs.titokone.ControlTest) (40 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryGuessFilename(fi.helsinki.cs.titokone.ControlTest) (38 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testWrites(fi.helsinki.cs.titokone.ApplicationTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testSaveBinaryFileName(fi.helsinki.cs.titokone.ControlTest) (55 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testCompile(fi.helsinki.cs.titokone.ControlTest) (41 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testStdInputBuffer(fi.helsinki.cs.titokone.ApplicationTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ApplicationTest.testConstructor(fi.helsinki.cs.titokone.ApplicationTest) (11 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetApplicationDefinitions(fi.helsinki.cs.titokone.ControlTest) (28 ms)</li><li>fi.helsinki.cs.titokone.BinaryTest.testToString(fi.helsinki.cs.titokone.BinaryTest) (2 ms)</li><li>fi.helsinki.cs.titokone.ControlTest.testGetBinary(fi.helsinki.cs.titokone.ControlTest) (36 ms)</li><li>fi.helsinki.cs.titokone.BinaryTest.testBinaryToApplication(fi.helsinki.cs.titokone.BinaryTest) (7 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.27
+
+</body>
+</html>
